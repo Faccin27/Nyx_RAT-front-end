@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 body {
   color: var(--foreground);
@@ -8,5 +6,6 @@ body {
   background-repeat: no-repeat;
   background-position: auto;
   background-size: cover;
+  
         
 }
