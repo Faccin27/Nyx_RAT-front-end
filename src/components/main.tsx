@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import logotipo from '@/assets/images/Logo.png'
+import Logo from './logo.png'
 import Image from 'next/image';
 
 export default function LoginPage() {
@@ -25,12 +25,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-indigo-900 to-black p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-purple-800 to-black p-4">
       <div className="w-full max-w-4xl bg-gradient-to-br from-purple-950 via-indigo-950 to-black rounded-3xl shadow-2xl overflow-hidden backdrop-filter backdrop-blur-sm bg-opacity-30">
         <nav className="p-6 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Image
-                src={logotipo} 
+                src={Logo} 
                 alt="Nyx rat logo"
                 className="rounded-full w-12 h-12"
             />
@@ -48,7 +48,7 @@ export default function LoginPage() {
               </button>
             ))}
             <button 
-              className="px-4 py-2 text-white border border-white rounded-md hover:bg-white hover:text-gray-900 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl"
+             className="px-4 py-2 text-white border border-purple rounded-md hover:bg-pink hover:text-pink-900 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Sign In
             </button>
@@ -96,7 +96,7 @@ export default function LoginPage() {
                     id="remember"
                     checked={rememberMe}
                     onChange={() => setRememberMe(!rememberMe)}
-                    className="rounded text-blue-500 focus:ring-blue-500"
+                        className="rounded text-purple-500 focus:ring-pink-500"
                   />
                   <label htmlFor="remember" className="text-sm text-gray-300">Remember me</label>
                 </div>
@@ -109,9 +109,11 @@ export default function LoginPage() {
           <div className="md:w-3/5 p-8 text-white relative overflow-hidden">
             {renderContent()}
             <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#FFFFFF" d="M41.9,-70.3C54.9,-62.9,66.2,-52.8,74.6,-40.1C83,-27.4,88.5,-12.2,88.1,2.8C87.7,17.8,81.4,32.6,72.4,45.3C63.4,58,51.6,68.5,38.1,74.8C24.6,81.1,9.4,83.2,-4.8,80.9C-18.9,78.6,-32,72,-44.6,64C-57.2,56,-69.4,46.6,-76.3,34.3C-83.3,21.9,-85,6.6,-83.1,-8C-81.1,-22.6,-75.6,-36.5,-66.5,-47.1C-57.4,-57.7,-44.8,-65,-32.1,-71.1C-19.3,-77.1,-6.5,-81.9,6.3,-82.1C19.1,-82.3,38.2,-77.8,41.9,-70.3Z" transform="translate(100 100)" />
-              </svg>
+              <Image
+              src={Logo}
+              alt="Logo"
+              className="rounded-full"
+              />
             </div>
           </div>
         </div>
@@ -123,8 +125,15 @@ export default function LoginPage() {
 function AboutContent() {
   return (
     <div className="relative z-10">
-      <h2 className="text-4xl font-bold mb-4">Welcome.</h2>
-      <p className="mb-6 text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h2 className="text-4xl font-bold mb-4">Welcome!</h2>
+        <p className="mb-6 text-white-200 border-b-2 border-purple-600">
+  Nyx RAT is a highly controversial and malicious software tool sold by an underground cyber company. The term "RAT" stands for Remote Access Trojan, and this particular virus is designed to infiltrate and take control of a victim's Discord account. Once installed on the target's device, <strong>Nyx RAT</strong> can stealthily capture screenshots from both the victim's webcam and their screen, granting the attacker complete visual access to the individual's private activities.
+
+  This malware operates discreetly, often going undetected by the user as it gathers sensitive data and transmits it back to the attacker. The company's product is marketed to individuals seeking unauthorized access and control over others' devices, raising significant ethical and legal concerns. Nyx RAT’s primary target is Discord users, but it also has the capability to affect other systems, making it a dangerous tool in the hands of hackers.
+
+  This type of malware is often distributed through phishing schemes, malicious downloads, or deceptive links, where unsuspecting users are tricked into installing it. Once embedded in the system, the victim’s privacy is fully compromised, posing severe risks such as identity theft, blackmail, and other harmful cybercrimes.
+</p>
+
       <Link href="#" className="text-blue-400 hover:underline">Sign up now</Link>
     </div>
   )
@@ -183,3 +192,10 @@ function FeaturesContent() {
     </div>
   )
 }
+
+
+
+
+
+
+

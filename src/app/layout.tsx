@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider as NextThemesProvider } from "@/components/provedor-tema";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Nyx Rat",
-  description: "The most powerfull and stealthy remote access tool.",
+  description: "The coolest Rat for fun!",
 };
 
 export default function RootLayout({
@@ -16,7 +17,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.className} min-h-screen `}>{children}</body>
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="dark"
+        disableTransitionOnChange
+      >                                                    
+        <body className={`${inter.className} min-h-screen `}>
+          {children}
+        </body>
+      </NextThemesProvider>
     </html>
   );
 }
