@@ -1,5 +1,4 @@
 'use client'
-
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import Logo from './logo.png'
@@ -37,10 +36,8 @@ export default function LoginPage() {
   } else {
     return (
       
-      <HereBackgroundGradientAnimation> 
-        
-
-        <div className="relative z-10 w-full max-w-4xl bg-gradient-to-br from-purple-950 via-indigo-950 to-black rounded-3xl shadow-2xl overflow-hidden backdrop-filter backdrop-blur-sm bg-opacity-30">
+      <HereBackgroundGradientAnimation>         
+        <div className="relative z-10 w-full max-w-4xl bg-gradient-to-br from-purple-950 via-indigo-950 to-black rounded-3xl shadow-2xl overflow-hidden backdrop-filter backdrop-blur-sm bg-opacity-30  mx-auto my-20">
           <nav className="p-6 flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <Image
@@ -75,7 +72,7 @@ export default function LoginPage() {
             <div className="md:w-2/5 p-8 border-r border-gray-700">
               <div className="flex justify-center mb-6">
                 <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-20 h-20 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   </svg>
                 </div>
@@ -123,7 +120,8 @@ export default function LoginPage() {
 
             {/* LADO DIREITO */}
             <div className="md:w-3/5 p-8 text-white relative overflow-hidden">
-              {renderContent()}
+           {renderContent()}
+         
               <div className="absolute inset-0 opacity-10 pointer-events-none">
                 <Image
                   src={Logo}
