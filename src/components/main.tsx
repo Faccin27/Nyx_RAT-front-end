@@ -172,34 +172,7 @@ function PricingContent() {
       <p className="mb-6 text-gray-300">Choose the plan that fits your needs. We have options for everyone!</p>
       <div className="grid grid-cols-2 gap-4">
       <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Starting Version</h3>
-          <p className="text-2xl font-bold mb-4">Free</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-            </div>
-            <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Basic</h3>
-          <p className="text-2xl font-bold mb-4">$9.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-          <br />
-          <br />
-        </div>
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Pro</h3>
-          <p className="text-2xl font-bold mb-4">$29.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-        </div>
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Ultra</h3>
-          <p className="text-2xl font-bold mb-4">$69.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
+          
         </div>
       </div>
       <TablePrice/>
