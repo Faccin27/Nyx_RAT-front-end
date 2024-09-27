@@ -3,15 +3,10 @@ import { cn } from "@/./utils/background-gradient-animation";
 import { useEffect, useRef, useState } from "react";
 
 export const HereBackgroundGradientAnimation = ({
-  gradientBackgroundStart = "rgb(108, 0, 162)",
-  gradientBackgroundEnd = "rgb(0, 17, 82)",
-  firstColor = "18, 113, 255",
-  secondColor = "221, 74, 255",
-  thirdColor = "100, 220, 255",
-  fourthColor = "200, 50, 50",
-  fifthColor = "180, 180, 50",
-  pointerColor = "140, 100, 255",
-  size = "80%",
+  gradientBackgroundStart = "rgb(0,0,0)",
+  gradientBackgroundEnd = "rgb(46,47,51)",
+  firstColor = "128,0,128",
+  size = "20%",
   blendingValue = "hard-light",
   children,
   className,
@@ -49,11 +44,6 @@ export const HereBackgroundGradientAnimation = ({
       gradientBackgroundEnd
     );
     document.body.style.setProperty("--first-color", firstColor);
-    document.body.style.setProperty("--second-color", secondColor);
-    document.body.style.setProperty("--third-color", thirdColor);
-    document.body.style.setProperty("--fourth-color", fourthColor);
-    document.body.style.setProperty("--fifth-color", fifthColor);
-    document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
   }, []);
@@ -98,7 +88,7 @@ export const HereBackgroundGradientAnimation = ({
           <filter id="blurMe">
             <feGaussianBlur
               in="SourceGraphic"
-              stdDeviation="10"
+              stdDeviation="5"
               result="blur"
             />
             <feColorMatrix

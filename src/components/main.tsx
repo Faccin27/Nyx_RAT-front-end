@@ -6,9 +6,10 @@ import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
 export default function LoginPage() {
-  const [activeTab, setActiveTab] = useState('about')
-  const [rememberMe, setRememberMe] = useState(false)
-  const [cliente, setCliente] = useState(false)
+  const [activeTab, setActiveTab] = useState('about');
+  const [rememberMe, setRememberMe] = useState(false);
+  const [accept, setAccept] = useState(false);
+  
 
   const renderContent = () => {
     switch (activeTab) {
@@ -24,20 +25,13 @@ export default function LoginPage() {
         return <TermService />
       default:
         return <AboutContent />
-    }
+    };
   }
 
-  useEffect(() => {
-    setCliente(true);
-  }, [])
-
-  if (!cliente) {
-    return null;
-  } else {
+  
     return (
       
       <HereBackgroundGradientAnimation>         
-        <div className="relative z-10 w-full max-w-4xl bg-gradient-to-br from-purple-950 via-indigo-950 to-black rounded-3xl shadow-2xl overflow-hidden backdrop-filter backdrop-blur-sm bg-opacity-30  mx-auto my-20">
           <nav className="p-6 flex justify-between items-center">
             <div className="flex items-center space-x-2">
               <Image
@@ -60,7 +54,7 @@ export default function LoginPage() {
                 </button>
               ))}
               <button 
-                className="px-4 py-2 text-white border border-purple rounded-md hover:bg-pink hover:text-pink-900 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
               >
                 Sign In
               </button>
@@ -96,9 +90,9 @@ export default function LoginPage() {
                     className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-                <button
+                  <button
                   type="submit"
-                  className="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+                  className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
                   LOGIN
                 </button>
@@ -113,6 +107,15 @@ export default function LoginPage() {
                     />
                     <label htmlFor="remember" className="text-sm text-gray-300">Remember me</label>
                   </div>
+                  <input
+                  type="checkbox" 
+                   id="accept"
+                   checked={accept}
+                   onChange={() => setAccept(!accept)}
+                   className="rounded text-purple-500 focus:ring-pink-500"
+                   required
+                    /> 
+                    <label htmlFor="accept" className="text-sm text-gray-300">I accept the Terms of Service</label>
                   <Link href="#" className="text-sm text-blue-400 hover:underline">Forgot your password?</Link>
                 </div>
               </form>
@@ -133,12 +136,10 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
-        </div>
         </HereBackgroundGradientAnimation> 
       
     )
   }
-}
 
 // Exemplo das funções de conteúdo
 function AboutContent() {
@@ -155,7 +156,7 @@ function DownloadContent() {
     <div>
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
       <p>Get our latest version and start creating amazing designs today!</p>
-      <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
         Download Now
       </button>
     </div>
@@ -171,14 +172,14 @@ function PricingContent() {
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Basic</h3>
           <p className="text-2xl font-bold mb-4">$9.99/mo</p>
-          <button className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
         </div>
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Pro</h3>
           <p className="text-2xl font-bold mb-4">$19.99/mo</p>
-          <button className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
         </div>
@@ -197,7 +198,7 @@ function FeaturesContent() {
       <li>Cloud storage</li>
       <li>24/7 support</li>
     </ul>
-    <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+    <button className="w-40 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
       Learn More
     </button>
   </div>
@@ -205,10 +206,12 @@ function FeaturesContent() {
 }
 
 function TermService() {
+  const [accept, setAccept] = useState(false)
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Terms of Service</h2>
       <p>We are not responsible for the use of our product by buyers. Upon purchase, the product becomes the private property of the buyer.</p>
+      
     </div>
   )
 }
