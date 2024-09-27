@@ -9,14 +9,14 @@ export default function Component() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const users = [
-    { id: 1, ip: '192.168.1.100', name: 'John Doe', username: 'jdoe', version: '1.2.3', status: 'Active', connection: 'Stable', location: 'New York', os: 'Windows 10', privileges: 'Admin' },
-    { id: 2, ip: '192.168.1.101', name: 'Jane Smith', username: 'jsmith', version: '1.2.2', status: 'Idle', connection: 'Unstable', location: 'Los Angeles', os: 'macOS', privileges: 'User' },
-    { id: 3, ip: '192.168.1.102', name: 'Bob Johnson', username: 'bjohnson', version: '1.2.3', status: 'Active', connection: 'Stable', location: 'Chicago', os: 'Linux', privileges: 'User' },
-    { id: 4, ip: '192.168.1.103', name: 'Alice Brown', username: 'abrown', version: '1.2.1', status: 'Active', connection: 'Stable', location: 'Houston', os: 'Windows 11', privileges: 'Admin' },
-    { id: 5, ip: '192.168.1.104', name: 'Charlie Davis', username: 'cdavis', version: '1.2.3', status: 'Idle', connection: 'Stable', location: 'Miami', os: 'macOS', privileges: 'User' },
-    { id: 6, ip: '192.168.1.105', name: 'Eva Wilson', username: 'ewilson', version: '1.2.2', status: 'Active', connection: 'Unstable', location: 'Seattle', os: 'Linux', privileges: 'User' },
-    { id: 7, ip: '192.168.1.106', name: 'Frank Miller', username: 'fmiller', version: '1.2.3', status: 'Active', connection: 'Stable', location: 'Boston', os: 'Windows 10', privileges: 'Admin' },
-    { id: 8, ip: '192.168.1.107', name: 'Grace Lee', username: 'glee', version: '1.2.1', status: 'Idle', connection: 'Stable', location: 'San Francisco', os: 'macOS', privileges: 'User' },
+    { id: 1, ip: '192.168.1.100', name: 'John Doe', username: 'jdoe', version: '1.2.3', location: 'New York', os: 'Windows 10', privileges: 'Admin', currentWindow: 'Discord', hasWebcam: true },
+    { id: 2, ip: '192.168.1.101', name: 'Jane Smith', username: 'jsmith', version: '1.2.2', location: 'Los Angeles', os: 'macOS', privileges: 'User', currentWindow: 'Valorant', hasWebcam: false },
+    { id: 3, ip: '192.168.1.102', name: 'Bob Johnson', username: 'bjohnson', version: '1.2.3', location: 'Chicago', os: 'Linux', privileges: 'User', currentWindow: 'Chrome', hasWebcam: true },
+    { id: 4, ip: '192.168.1.103', name: 'Alice Brown', username: 'abrown', version: '1.2.1', location: 'Houston', os: 'Windows 11', privileges: 'Admin', currentWindow: 'Spotify', hasWebcam: true },
+    { id: 5, ip: '192.168.1.104', name: 'Charlie Davis', username: 'cdavis', version: '1.2.3', location: 'Miami', os: 'macOS', privileges: 'User', currentWindow: 'Photoshop', hasWebcam: false },
+    { id: 6, ip: '192.168.1.105', name: 'Eva Wilson', username: 'ewilson', version: '1.2.2', location: 'Seattle', os: 'Linux', privileges: 'User', currentWindow: 'Terminal', hasWebcam: true },
+    { id: 7, ip: '192.168.1.106', name: 'Frank Miller', username: 'fmiller', version: '1.2.3', location: 'Boston', os: 'Windows 10', privileges: 'Admin', currentWindow: 'Visual Studio Code', hasWebcam: true },
+    { id: 8, ip: '192.168.1.107', name: 'Grace Lee', username: 'glee', version: '1.2.1', location: 'San Francisco', os: 'macOS', privileges: 'User', currentWindow: 'Zoom', hasWebcam: true },
   ]
 
   const userInfo = {
@@ -91,7 +91,7 @@ export default function Component() {
         </div>
       )}
 
-      <main className="flex-grow p-4 flex flex-col items-center relative z-10">
+<main className="flex-grow p-4 flex flex-col items-center relative z-10">
         <div className="w-full overflow-x-auto">
           <table className="w-full mb-8 border-collapse">
             <thead>
@@ -100,11 +100,11 @@ export default function Component() {
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Client Name</th>
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Username</th>
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Version</th>
-                <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Status</th>
-                <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Connection</th>
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Location</th>
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">OS</th>
                 <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Privileges</th>
+                <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Current Window</th>
+                <th className="px-2 py-1 sm:px-4 sm:py-2 text-left">Webcam</th>
               </tr>
             </thead>
             <tbody>
@@ -114,11 +114,11 @@ export default function Component() {
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.name}</td>
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.username}</td>
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.version}</td>
-                  <td className="px-2 py-1 sm:px-4 sm:py-2">{user.status}</td>
-                  <td className="px-2 py-1 sm:px-4 sm:py-2">{user.connection}</td>
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.location}</td>
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.os}</td>
                   <td className="px-2 py-1 sm:px-4 sm:py-2">{user.privileges}</td>
+                  <td className="px-2 py-1 sm:px-4 sm:py-2">{user.currentWindow}</td>
+                  <td className="px-2 py-1 sm:px-4 sm:py-2">{user.hasWebcam ? 'Yes' : 'No'}</td>
                 </tr>
               ))}
             </tbody>
