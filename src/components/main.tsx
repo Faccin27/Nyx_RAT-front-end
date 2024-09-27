@@ -36,9 +36,9 @@ export default function LoginPage() {
     return null;
   } else {
     return (
-      <div className="relative min-h-screen flex items-center justify-center">
-        {/* Inserindo a animação de fundo */}
-        <HereBackgroundGradientAnimation />
+      
+      <HereBackgroundGradientAnimation> 
+        
 
         <div className="relative z-10 w-full max-w-4xl bg-gradient-to-br from-purple-950 via-indigo-950 to-black rounded-3xl shadow-2xl overflow-hidden backdrop-filter backdrop-blur-sm bg-opacity-30">
           <nav className="p-6 flex justify-between items-center">
@@ -136,7 +136,7 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
-        </div>
+        </HereBackgroundGradientAnimation> 
       
     )
   }
@@ -147,7 +147,7 @@ function AboutContent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">About Nyx RAT</h2>
-      <p>This tool is used for remote access...</p>
+      <p>Nyx RAT is a malicious software tool designed to take control of a victim’s Discord account. It can capture screenshots from the victim’s webcam and screen, giving the attacker full visual access. This malware is often spread through phishing, malicious downloads, or deceptive links, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
     </div>
   )
 }
@@ -156,26 +156,53 @@ function DownloadContent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
-      <p>Here you can download the software...</p>
+      <p>Get our latest version and start creating amazing designs today!</p>
+      <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+        Download Now
+      </button>
     </div>
   )
 }
 
 function PricingContent() {
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Pricing Plans</h2>
-      <p>Choose the plan that fits you...</p>
+    <div className="relative z-10">
+      <h2 className="text-4xl font-bold mb-4">Pricing</h2>
+      <p className="mb-6 text-gray-300">Choose the plan that fits your needs. We have options for everyone!</p>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="border border-gray-700 p-4 rounded-lg">
+          <h3 className="text-xl font-bold mb-2">Basic</h3>
+          <p className="text-2xl font-bold mb-4">$9.99/mo</p>
+          <button className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+            Choose Plan
+          </button>
+        </div>
+        <div className="border border-gray-700 p-4 rounded-lg">
+          <h3 className="text-xl font-bold mb-2">Pro</h3>
+          <p className="text-2xl font-bold mb-4">$19.99/mo</p>
+          <button className="w-full px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+            Choose Plan
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
 
 function FeaturesContent() {
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Features of Nyx RAT</h2>
-      <p>Some of the features include...</p>
-    </div>
+    <div className="relative z-10">
+    <h2 className="text-4xl font-bold mb-4">Features</h2>
+    <ul className="list-disc list-inside mb-6 text-gray-300">
+      <li>Advanced design tools</li>
+      <li>Collaboration features</li>
+      <li>Cloud storage</li>
+      <li>24/7 support</li>
+    </ul>
+    <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+      Learn More
+    </button>
+  </div>
   )
 }
 
@@ -183,7 +210,7 @@ function TermService() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Terms of Service</h2>
-      <p>These are the terms you must follow...</p>
+      <p>We are not responsible for the use of our product by buyers. Upon purchase, the product becomes the private property of the buyer.</p>
     </div>
   )
 }
