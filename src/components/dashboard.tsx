@@ -96,13 +96,14 @@ export default function Component() {
 
   const Modal = () => (
     
+    
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
       {/* Botão de fechar */}
-      <button onClick={handleCloseModal} className="absolute top-4 right-4 text-white">
-        X
+      <button onClick={handleCloseModal} className="relative top-4 ri-1 text-red-700">
+        CLOSE
       </button>
-        <h2 className="text-3xl font-bold text-center">Informações do Usuário</h2>
+        <h2 className="text-3xl font-bold text-center">Victimin informations</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Display Name:</strong>
@@ -118,7 +119,7 @@ export default function Component() {
           </div>
         </div>
   
-        <h2 className="text-3xl font-bold text-center mt-8">Informações do Sistema Operacional</h2>
+        <h2 className="text-3xl font-bold text-center mt-8">System Informations</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>System:</strong>
@@ -154,7 +155,7 @@ export default function Component() {
           </div>
         </div>
   
-        <h2 className="text-3xl font-bold text-center mt-8">Informações de Internet</h2>
+        <h2 className="text-3xl font-bold text-center mt-8">Internet Informations</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>IP:</strong>
@@ -197,9 +198,9 @@ export default function Component() {
       className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1 z-50"
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}>GET Victim Information</div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">GET Webcam pic</div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">GET Screenshot</div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" className='no-underline'>GET Victim Information</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victmin" className='no-underline'>GET Webcam pic</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victmin" className='no-underline'>GET Screnn Shot</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
         Stealer Options ▶
         {subMenu.visible && (
@@ -208,11 +209,13 @@ export default function Component() {
             className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1"
             style={{ top: '0', left: '100%', minWidth: 250 }}
           >
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">Steal Passwords</div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">Steal Cookies</div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">Steal History</div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">Steal Downloads</div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">Steal Discord</div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
+              <abbr className='no-underline' title='Here you can steal the user Passwords'><p>Steal Passwords</p></abbr>
+            </div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin History'>Steal History</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Downloads'>Steal Downloads</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Discord'>Steal Discord</abbr></div>
           </div>
         )}
       </div>

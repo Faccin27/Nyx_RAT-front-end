@@ -1,6 +1,7 @@
 'use client';
 import { cn } from "@/./utils/background-gradient-animation";
 import { useEffect, useRef, useState } from "react";
+import Footer from "../footer/footer";
 
 export const HereBackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(0,0,0)",
@@ -167,5 +168,6 @@ export const HereBackgroundGradientAnimation = ({
         )}
       </div>
     </div>
+    
   );
 };

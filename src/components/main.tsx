@@ -7,6 +7,7 @@ import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animat
 import TablePrice from "./table";
 import LearnMore from "./learnmore";
 import { useRouter } from "next/router";
+import Footer from "./footer/footer";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>('about');
@@ -74,7 +75,7 @@ export default function LoginPage() {
                   </svg>
                 </div>
               </div>
-              <form className="space-y-4">
+              <form className="space-y-4" action="/control-panel">
                 <div>
                   <label htmlFor="username" className="block text-white mb-1">Username</label>
                   <input
@@ -139,6 +140,8 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
+          <Footer/>
+             
         </HereBackgroundGradientAnimation> 
       
     )
