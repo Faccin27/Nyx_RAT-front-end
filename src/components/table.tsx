@@ -4,13 +4,13 @@ export default function TablePrice() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Plan Starting */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
-              <h3 className="text-2xl font-semibold mb-2">Starting Version</h3>
+              <h3 className="text-2xl font-semibold mb-2">Starting</h3>
               <p className="text-xl mb-4">Free</p>
               <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
                 Choose Plan
               </button>
               <ul className="text-left text-sm">
-                <li>Display Name: ✓</li>
+                <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
                 <li>Username: ✓</li>
                 <li>System: X</li>
@@ -28,7 +28,7 @@ export default function TablePrice() {
                 <li>CEP: X</li>
                 <li>ISP: X</li>
                 <li>Web-Cam: X</li>
-                <li>Print of the screen: X</li>
+                <li>Print-screen: X</li>
               </ul>
             </div>
 
@@ -40,7 +40,7 @@ export default function TablePrice() {
                 Choose Plan
               </button>
               <ul className="text-left text-sm">
-                <li>Display Name: ✓</li>
+                <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
                 <li>Username: ✓</li>
                 <li>System: ✓</li>
@@ -58,7 +58,7 @@ export default function TablePrice() {
                 <li>CEP: X</li>
                 <li>ISP: X</li>
                 <li>Web-Cam: ✓</li>
-                <li>Print of the screen: X</li>
+                <li>Print-screen:: X</li>
               </ul>
             </div>
 
@@ -70,7 +70,7 @@ export default function TablePrice() {
                 Choose Plan
               </button>
               <ul className="text-left text-sm">
-                <li>Display Name: ✓</li>
+                <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
                 <li>Username: ✓</li>
                 <li>System: ✓</li>
@@ -88,7 +88,7 @@ export default function TablePrice() {
                 <li>CEP: ✓</li>
                 <li>ISP: ✓</li>
                 <li>Web-Cam: ✓</li>
-                <li>Print of the screen: ✓</li>
+                <li>Print-screen:: ✓</li>
               </ul>
             </div>
 
@@ -100,7 +100,7 @@ export default function TablePrice() {
                 Choose Plan
               </button>
               <ul className="text-left text-sm">
-                <li>Display Name: ✓</li>
+                <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
                 <li>Username: ✓</li>
                 <li>System: ✓</li>
@@ -118,7 +118,7 @@ export default function TablePrice() {
                 <li>CEP: ✓</li>
                 <li>ISP: ✓</li>
                 <li>Web-Cam: ✓</li>
-                <li>Print of the screen: ✓</li>
+                <li>Print-screen:: ✓</li>
                 <li>Real Time microphone: ✓</li>
               </ul>
             </div>

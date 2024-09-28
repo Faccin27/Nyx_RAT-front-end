@@ -147,7 +147,7 @@ function AboutContent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">About Nyx RAT</h2>
-      <p>Nyx RAT is a malicious software tool designed to take control of a victim’s Discord account. It can capture screenshots from the victim’s webcam and screen, giving the attacker full visual access. This malware is often spread through phishing, malicious downloads, or deceptive links, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
+      <p>Nyx RAT is a softaware designed to take a shadow control of the victimim computer. It can capture screenshots from the victim’s webcam, giving the our users full visual access. This softaware is often spread through the victim passwords, hisroty and more, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
     </div>
   )
 }
@@ -158,7 +158,9 @@ function DownloadContent() {
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
       <p>To downaload the our RAT you need to Choose one of the plans in the Plans place</p>
       <br />
-      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      onClick={()=> (alert('You need to chosse one of our plans to continue'))}
+      >
         Download Now
       </button>
     </div>
@@ -201,7 +203,7 @@ function TermService() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Terms of Service</h2>
-      <p>We are not responsible for the use of our product by buyers. Upon purchase, the product becomes the private property of the buyer.</p>
+      <p>When you but one of our products they become your propreety, and we shall not be held responsible for any use made of our products.</p>
       
     </div>
   )
