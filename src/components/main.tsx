@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import Logo from './logo.png'
+import Logo from '@/assets/logo.png'
 import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
