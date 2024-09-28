@@ -93,7 +93,7 @@ export default function TablePrice() {
                 <li>Hostname: ✓</li>
                 <li>Username: ✓</li>
                 <li>System: ✓</li>
-                <li>Version: ✓</li>
+                <li>Version:✓</li>
                 <li>Architecture: ✓</li>
                 <li>CPU: ✓</li>
                 <li>GPU: ✓</li>

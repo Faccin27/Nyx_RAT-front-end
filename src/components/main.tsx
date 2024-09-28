@@ -5,6 +5,8 @@ import Logo from './logo.png'
 import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
+import LearnMore from "./learnmore";
+import { useRouter } from "next/router";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>('about');
@@ -42,7 +44,7 @@ export default function LoginPage() {
                 width={0}
                 height={0}
               />
-              <span className="text-white text-xl font-bold">NYX <br /> RAT</span>
+              <span className="text-white text-xl font-bold">NYX RAT</span>
             </div>
             <div className="space-x-2">
               {['about', 'download', 'pricing', 'features', 'terms of service'].map((tab) => (
@@ -55,7 +57,7 @@ export default function LoginPage() {
                 </button>
               ))}
               <button 
-                className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+                className="w-20 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
               >
                 Sign In
               </button>
@@ -93,7 +95,7 @@ export default function LoginPage() {
                 </div>
                   <button 
                   type="submit"
-                  className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+                  className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
                   LOGIN
                 </button>
@@ -158,7 +160,7 @@ function DownloadContent() {
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
       <p>To downaload the our RAT you need to Choose one of the plans in the Plans place</p>
       <br />
-      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      <button className="w-60 bg-white  hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
       onClick={()=> (alert('You need to chosse one of our plans to continue'))}
       >
         Download Now
@@ -184,14 +186,14 @@ function PricingContent() {
       <div className="border border-gray-700 p-4 rounded-lg">
       <h3 className="text-xl font-bold mb-2">Starting Version</h3>
           <p className="text-2xl font-bold mb-4">Free</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
             </div>
             <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Basic</h3>
           <p className="text-2xl font-bold mb-4">$9.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full bg-white  hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
           <br />
@@ -200,23 +202,24 @@ function PricingContent() {
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Pro</h3>
           <p className="text-2xl font-bold mb-4">$29.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
+          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+            Choose Plan'
           </button>
         </div>
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Ultra</h3>
           <p className="text-2xl font-bold mb-4">$69.99/mo</p>
-          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full bg-white  hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
         </div>
       </div>
+      <br />
       {/* Mostrar a lista se a tabela for true ou apagar se ela for false:*/}
       {tablea? (
         <div>
           <button
-          className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 "
+          className="relative w-full bg-white  hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
           onClick={()=> setTaleba(false)}
           >
             Close
@@ -226,7 +229,7 @@ function PricingContent() {
       ):
       (
         <button
-        className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+        className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
         onClick={()=> setTaleba(true)}
         >
           Details
@@ -238,6 +241,7 @@ function PricingContent() {
 }
 
 function FeaturesContent() {
+
   return (
     <div className="relative z-10">
     <h2 className="text-4xl font-bold mb-4">Features</h2>
@@ -247,12 +251,13 @@ function FeaturesContent() {
       <li>SQL storage</li>
       <li>Support 24/7</li>
     </ul>
-    <button className="w-40 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-      Learn More
-    </button>
+
+    <Link href={'learn-more'} className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 " id="limpo">
+      <label>Learn More</label>
+      </Link>
   </div>
-  )
-}
+    )
+  }
 
 function TermService() {
   return (
@@ -261,6 +266,5 @@ function TermService() {
       <p>When you but one of our products they become your propreety, and we shall not be held responsible for any use made of our products.</p>
       
     </div>
-  )
-}
-
+    )
+  }
