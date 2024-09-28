@@ -1,5 +1,5 @@
 [
-    {
+  {
       "id": 1,
       "ip": "192.168.1.100",
       "name": "John Doe",
@@ -9,9 +9,21 @@
       "os": "Windows 10",
       "privileges": "Admin",
       "currentWindow": "Discord",
-      "hasWebcam": true
-    },
-    {
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:5E",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "jdoe@example.com",
+          "lastLogin": "2024-09-27T14:30:00Z",
+          "status": "Online",
+          "activeSessions": 3
+      }
+  },
+  {
       "id": 2,
       "ip": "192.168.1.101",
       "name": "Jane Smith",
@@ -21,9 +33,21 @@
       "os": "macOS",
       "privileges": "User",
       "currentWindow": "Valorant",
-      "hasWebcam": false
-    },
-    {
+      "hasWebcam": false,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:5F",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "jsmith@example.com",
+          "lastLogin": "2024-09-26T10:15:00Z",
+          "status": "Away",
+          "activeSessions": 1
+      }
+  },
+  {
       "id": 3,
       "ip": "192.168.1.102",
       "name": "Bob Johnson",
@@ -33,9 +57,21 @@
       "os": "Linux",
       "privileges": "User",
       "currentWindow": "Chrome",
-      "hasWebcam": true
-    },
-    {
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:60",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "bjohnson@example.com",
+          "lastLogin": "2024-09-27T12:45:00Z",
+          "status": "Online",
+          "activeSessions": 2
+      }
+  },
+  {
       "id": 4,
       "ip": "192.168.1.103",
       "name": "Alice Brown",
@@ -45,9 +81,21 @@
       "os": "Windows 11",
       "privileges": "Admin",
       "currentWindow": "Spotify",
-      "hasWebcam": true
-    },
-    {
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:61",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "abrown@example.com",
+          "lastLogin": "2024-09-25T16:00:00Z",
+          "status": "Offline",
+          "activeSessions": 0
+      }
+  },
+  {
       "id": 5,
       "ip": "192.168.1.104",
       "name": "Charlie Davis",
@@ -57,9 +105,21 @@
       "os": "macOS",
       "privileges": "User",
       "currentWindow": "Photoshop",
-      "hasWebcam": false
-    },
-    {
+      "hasWebcam": false,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:62",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "cdavis@example.com",
+          "lastLogin": "2024-09-27T09:30:00Z",
+          "status": "Online",
+          "activeSessions": 1
+      }
+  },
+  {
       "id": 6,
       "ip": "192.168.1.105",
       "name": "Eva Wilson",
@@ -69,9 +129,21 @@
       "os": "Linux",
       "privileges": "User",
       "currentWindow": "Terminal",
-      "hasWebcam": true
-    },
-    {
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:63",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "ewilson@example.com",
+          "lastLogin": "2024-09-26T15:20:00Z",
+          "status": "Away",
+          "activeSessions": 2
+      }
+  },
+  {
       "id": 7,
       "ip": "192.168.1.106",
       "name": "Frank Miller",
@@ -81,9 +153,21 @@
       "os": "Windows 10",
       "privileges": "Admin",
       "currentWindow": "Visual Studio Code",
-      "hasWebcam": true
-    },
-    {
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:64",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "fmiller@example.com",
+          "lastLogin": "2024-09-27T08:00:00Z",
+          "status": "Online",
+          "activeSessions": 4
+      }
+  },
+  {
       "id": 8,
       "ip": "192.168.1.107",
       "name": "Grace Lee",
@@ -93,7 +177,18 @@
       "os": "macOS",
       "privileges": "User",
       "currentWindow": "Zoom",
-      "hasWebcam": true
-    }
-  ]
-  
+      "hasWebcam": true,
+      "networkDetails": {
+          "macAddress": "00:1A:2B:3C:4D:65",
+          "subnetMask": "255.255.255.0",
+          "gateway": "192.168.1.1",
+          "dns": ["8.8.8.8", "8.8.4.4"]
+      },
+      "userDetails": {
+          "email": "glee@example.com",
+          "lastLogin": "2024-09-26T13:50:00Z",
+          "status": "Offline",
+          "activeSessions": 1
+      }
+  }
+]

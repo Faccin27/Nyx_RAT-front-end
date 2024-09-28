@@ -1,12 +1,11 @@
 'use client'
 import { useState, useEffect, useRef, MouseEvent } from 'react'
 import Image from 'next/image'
-import { Menu } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import logo from '@/assets/logo.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from '@/data/teste.json';
 import { useParams } from 'next/navigation'
-import Footer from './footer/footer'
 
 interface User {
   id: number;
@@ -43,10 +42,10 @@ export default function Component() {
   const contextMenuRef = useRef<HTMLDivElement>(null)
   const subMenuRef = useRef<HTMLDivElement>(null)
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const users: User[] = Data;
 
 
-
-  const users = Data;
 
 
   const userInfo = {
@@ -86,6 +85,111 @@ export default function Component() {
     setSelectedUserId(userId === selectedUserId ? null : userId)
   }
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    setContextMenu({ visible: false, x: 0, y: 0, userId: null });
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  }
+
+  const Modal = () => (
+    
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
+      {/* Botão de fechar */}
+      <button onClick={handleCloseModal} className="absolute top-4 right-4 text-white">
+        X
+      </button>
+        <h2 className="text-3xl font-bold text-center">Informações do Usuário</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Display Name:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Faccin</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Hostname:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">DESKTOP-FIE65F7</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Username:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Faccin</p>
+          </div>
+        </div>
+  
+        <h2 className="text-3xl font-bold text-center mt-8">Informações do Sistema Operacional</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>System:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Windows</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Version:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">10.0.19045</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Architecture:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">64bit</p>
+          </div>
+        </div>
+  
+        <h2 className="text-3xl font-bold text-center mt-8">Informações do Sistema</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>CPU:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AMD Ryzen 5 5600G with Radeon Graphics</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>GPU:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AMD Radeon(TM) Graphics</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>RAM:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">15.0 GB</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>HWID:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">9BC0CC18-764D-11F3-F006-F0D076086579</p>
+          </div>
+        </div>
+  
+        <h2 className="text-3xl font-bold text-center mt-8">Informações de Internet</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>IP:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">172.16.0.2</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>MAC:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">fc:f0:c3:0f:3c:f0</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>País:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">BR</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Região:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Rio Grande do Sul</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>Cidade:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Caxias do Sul</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>CEP:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">95000-000</p>
+          </div>
+          <div className="bg-zinc-900 p-4 rounded-md">
+            <strong>ISP:</strong>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AS13335 Cloudflare, Inc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  
+  
 
   const ContextMenu = () => (
     <div
@@ -93,7 +197,7 @@ export default function Component() {
       className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1 z-50"
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">GET Victim Information</div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}>GET Victim Information</div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">GET Webcam pic</div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">GET Screenshot</div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
@@ -225,10 +329,15 @@ export default function Component() {
           </div>
         </main>
 
-      <Footer/>
+      <footer className="p-4 flex justify-between text-blue-300 text-xs sm:text-sm relative z-10">
+        <span>Status: Nyx - Connected - {users.length}</span>
+        <span>The most powerfull remote acess tool created.</span>
+        <span>Nyx rat, since 2024</span>
+      </footer>
     </div>
 
     {contextMenu.visible && <ContextMenu />}
+    {isModalOpen && <Modal />}
     </HereBackgroundGradientAnimation>         
   )
 }

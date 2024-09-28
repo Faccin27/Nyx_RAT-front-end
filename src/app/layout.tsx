@@ -17,15 +17,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <NextThemesProvider
-        attribute="class"
-        defaultTheme="dark"
-        disableTransitionOnChange
-      >                                                    
-        <body className={`${inter.className} min-h-screen `}>
+      <head>
+        {/* Head content como meta tags ou links podem ir aqui */}
+      </head>
+      <body className={`${inter.className} min-h-screen`}>
+        <NextThemesProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
           {children}
-        </body>
-      </NextThemesProvider>
+        </NextThemesProvider>
+      </body>
     </html>
   );
 }
