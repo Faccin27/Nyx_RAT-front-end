@@ -4,11 +4,12 @@ import { useEffect, useState } from "react"
 import Logo from '@/assets/logo.png'
 import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import TablePrice from "./table";
 
 export default function LoginPage() {
-  const [activeTab, setActiveTab] = useState('about');
-  const [rememberMe, setRememberMe] = useState(false);
-  const [accept, setAccept] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>('about');
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [accept, setAccept] = useState<boolean>(false);
   
 
   const renderContent = () => {
@@ -61,7 +62,7 @@ export default function LoginPage() {
             </div>
           </nav>
 
-          <div className="mt-8 flex flex-col md:flex-row">
+          <div className="mt-8 flex flex-col md:flex-row"> {/* Erro aqui*/}
             {/* LADO ESQUERDO */}
             <div className="md:w-2/5 p-8 border-r border-gray-700">
               <div className="flex justify-center mb-6">
@@ -90,7 +91,7 @@ export default function LoginPage() {
                     className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-                  <button
+                  <button 
                   type="submit"
                   className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
                 >
@@ -122,7 +123,7 @@ export default function LoginPage() {
             </div>
 
             {/* LADO DIREITO */}
-            <div className="md:w-3/5 p-8 text-white relative overflow-hidden">
+            <div className="md:w-3/5 p-8 text-white relative">
            {renderContent()}
          
               <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -146,7 +147,7 @@ function AboutContent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">About Nyx RAT</h2>
-      <p>Nyx RAT is a malicious software tool designed to take control of a victim’s Discord account. It can capture screenshots from the victim’s webcam and screen, giving the attacker full visual access. This malware is often spread through phishing, malicious downloads, or deceptive links, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
+      <p>Nyx RAT is a softaware designed to take a shadow control of the victimim computer. It can capture screenshots from the victim’s webcam, giving the our users full visual access. This softaware is often spread through the victim passwords, hisroty and more, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
     </div>
   )
 }
@@ -155,8 +156,11 @@ function DownloadContent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
-      <p>Get our latest version and start creating amazing designs today!</p>
-      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+      <p>To downaload the our RAT you need to Choose one of the plans in the Plans place</p>
+      <br />
+      <button className="w-60 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      onClick={()=> (alert('You need to chosse one of our plans to continue'))}
+      >
         Download Now
       </button>
     </div>
@@ -164,27 +168,72 @@ function DownloadContent() {
 }
 
 function PricingContent() {
+  const [tablea, setTaleba] = useState(false);
+  useEffect(()=>{
+    if(tablea){
+      {/* Aqui eu falo que se a tabela for true, vai dar um console indicando isso */}
+      console.log(`${tablea}, is correct.`) 
+    }
+  },[tablea])
+
   return (
     <div className="relative z-10">
       <h2 className="text-4xl font-bold mb-4">Pricing</h2>
       <p className="mb-6 text-gray-300">Choose the plan that fits your needs. We have options for everyone!</p>
       <div className="grid grid-cols-2 gap-4">
-        <div className="border border-gray-700 p-4 rounded-lg">
+      <div className="border border-gray-700 p-4 rounded-lg">
+      <h3 className="text-xl font-bold mb-2">Starting Version</h3>
+          <p className="text-2xl font-bold mb-4">Free</p>
+          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+            Choose Plan
+          </button>
+            </div>
+            <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Basic</h3>
           <p className="text-2xl font-bold mb-4">$9.99/mo</p>
           <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
+          <br />
+          <br />
         </div>
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Pro</h3>
-          <p className="text-2xl font-bold mb-4">$19.99/mo</p>
+          <p className="text-2xl font-bold mb-4">$29.99/mo</p>
+          <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+            Choose Plan
+          </button>
+        </div>
+        <div className="border border-gray-700 p-4 rounded-lg">
+          <h3 className="text-xl font-bold mb-2">Ultra</h3>
+          <p className="text-2xl font-bold mb-4">$69.99/mo</p>
           <button className="w-full bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Choose Plan
           </button>
         </div>
       </div>
-    </div>
+      {/* Mostrar a lista se a tabela for true ou apagar se ela for false:*/}
+      {tablea? (
+        <div>
+          <button
+          className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 "
+          onClick={()=> setTaleba(false)}
+          >
+            Close
+          </button>
+          <TablePrice/>
+        </div>
+      ):
+      (
+        <button
+        className="w-20 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+        onClick={()=> setTaleba(true)}
+        >
+          Details
+        </button>
+      )
+      }
+      </div>
   )
 }
 
@@ -193,10 +242,10 @@ function FeaturesContent() {
     <div className="relative z-10">
     <h2 className="text-4xl font-bold mb-4">Features</h2>
     <ul className="list-disc list-inside mb-6 text-gray-300">
-      <li>Advanced design tools</li>
-      <li>Collaboration features</li>
-      <li>Cloud storage</li>
-      <li>24/7 support</li>
+      <li>Multi plataform (this web site and the <Link href={'https://discord.com/'} target="_blank">®Discord.</Link>)</li>
+      <li>We can catch the user passwords, IP, Country, prints of the user screen and alot of other things.</li>
+      <li>SQL storage</li>
+      <li>Support 24/7</li>
     </ul>
     <button className="w-40 bg-white hover:bg-white-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
       Learn More
@@ -206,11 +255,10 @@ function FeaturesContent() {
 }
 
 function TermService() {
-  const [accept, setAccept] = useState(false)
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Terms of Service</h2>
-      <p>We are not responsible for the use of our product by buyers. Upon purchase, the product becomes the private property of the buyer.</p>
+      <p>When you but one of our products they become your propreety, and we shall not be held responsible for any use made of our products.</p>
       
     </div>
   )
