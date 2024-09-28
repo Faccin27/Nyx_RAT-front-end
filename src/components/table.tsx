@@ -5,7 +5,6 @@ export default function TablePrice() {
             {/* Plan Starting */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Starting</h3>
-              <p className="text-xl mb-4">Free</p>
               <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
                 Choose Plan
               </button>
@@ -35,7 +34,6 @@ export default function TablePrice() {
             {/* Plan Basic */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Basic</h3>
-              <p className="text-xl mb-4">$9.99/mo</p>
               <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
                 Choose Plan
               </button>
@@ -65,7 +63,7 @@ export default function TablePrice() {
             {/* Plan Pro */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Pro</h3>
-              <p className="text-xl mb-4">$29.99/mo</p>
+  
               <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
                 Choose Plan
               </button>
@@ -95,7 +93,6 @@ export default function TablePrice() {
             {/* Plan Ultra */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Ultra</h3>
-              <p className="text-xl mb-4">$69.99/mo</p>
               <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
                 Choose Plan
               </button>
