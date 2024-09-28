@@ -5,9 +5,7 @@ export default function TablePrice() {
             {/* Plan Starting */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Starting</h3>
-              <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
-                Choose Plan
-              </button>
+
               <ul className="text-left text-sm">
                 <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
@@ -34,9 +32,7 @@ export default function TablePrice() {
             {/* Plan Basic */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Basic</h3>
-              <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
-                Choose Plan
-              </button>
+
               <ul className="text-left text-sm">
                 <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
@@ -64,9 +60,7 @@ export default function TablePrice() {
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Pro</h3>
   
-              <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
-                Choose Plan
-              </button>
+  
               <ul className="text-left text-sm">
                 <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
@@ -93,9 +87,7 @@ export default function TablePrice() {
             {/* Plan Ultra */}
             <div className="border border-gray-700 rounded-lg p-6 text-center bg-transparent">
               <h3 className="text-2xl font-semibold mb-2">Ultra</h3>
-              <button className="w-full bg-white text-black py-2 px-4 rounded-lg mb-6 transform hover:scale-105">
-                Choose Plan
-              </button>
+  
               <ul className="text-left text-sm">
                 <li>Display-Name: ✓</li>
                 <li>Hostname: ✓</li>
