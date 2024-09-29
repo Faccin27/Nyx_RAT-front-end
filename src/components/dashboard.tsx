@@ -35,7 +35,6 @@ interface SubMenuState {
 
 
 export default function Component() {
-  const [isOnline, setIsOnline] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [contextMenu, setContextMenu] = useState<ContextMenuState>({ visible: false, x: 0, y: 0, userId: null })
   const [subMenu, setSubMenu] = useState<SubMenuState>({ visible: false, x: 0, y: 0 })
@@ -48,11 +47,13 @@ export default function Component() {
 
 
 
+
   const userInfo = {
     name: 'Faccin',
     registeredDate: '2023-01-15',
     expiryDate: '2038-01-15'
   }
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -93,7 +94,7 @@ export default function Component() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   }
-
+ 
   const Modal = () => (
   
   
@@ -176,15 +177,15 @@ export default function Component() {
             <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">fc:f0:c3:0f:3c:f0</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>País:</strong>
+            <strong>Country:</strong>
             <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">BR</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Região:</strong>
+            <strong>Region:</strong>
             <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Rio Grande do Sul</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Cidade:</strong>
+            <strong>City:</strong>
             <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Caxias do Sul</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
@@ -210,9 +211,9 @@ export default function Component() {
       className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1 z-50"
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" className='no-underline'>GET Victim Information</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victmin" className='no-underline'>GET Webcam pic</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victmin" className='no-underline'>GET Screnn Shot</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" >GET Victim Information</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victim" >GET Webcam pic</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victim" >GET Screnn Shot</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
         Stealer Options ▶
         {subMenu.visible && (
@@ -224,14 +225,23 @@ export default function Component() {
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
               <abbr className='no-underline' title='Here you can steal the user Passwords'><p>Steal Passwords</p></abbr>
             </div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin History'>Steal History</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Downloads'>Steal Downloads</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr className='no-underline' title='Here you can steal the victmin Discord'>Steal Discord</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin History'>Steal History</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Downloads'>Steal Downloads</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Discord'>Steal Discord</abbr></div>
           </div>
         )}
       </div>
-      <div className="px-4 py-2 hover:bg-zinc-700 text-red-500 cursor-pointer">Remove victim</div>
+      {/* O onclick para deletar o user vai ficar aqui */}
+      <div className="px-4 py-2 hover:bg-zinc-700 text-red-500 cursor-pointer">
+        <button
+        
+        >
+       Remove Victimin
+        </button>
+        
+        
+        </div>
     </div>
   )
   
@@ -249,20 +259,6 @@ export default function Component() {
 
       <header className="p-4 flex justify-between items-center relative z-10">
         <div className="flex items-center space-x-2">
-          <button
-            onClick={() => setIsOnline(!isOnline)}
-            className={`w-12 h-6 rounded-full p-1 transition-colors duration-200 ease-in-out ${
-              isOnline ? 'bg-blue-300' : 'bg-gray-600'
-            }`}
-          >
-            <div
-              className={`w-4 h-4 rounded-full bg-white transition-transform duration-200 ease-in-out ${
-                isOnline ? 'transform translate-x-6' : ''
-              }`}
-            ></div>
-          </button>
-          <span className="hidden sm:inline">Status</span>
-          <span>{isOnline ? 'Online' : 'Offline'}</span>
         </div>
         <h1 className="text-xl sm:text-2xl font-bold">
           <span className="text-zinc-400">NYX</span> RAT
@@ -322,7 +318,7 @@ export default function Component() {
               {users.map(user => (
                   <tr
                     key={user.id} 
-                    className={`border-b border-zinc-700 transition-colors duration-200 hover:bg-blue-500 bg-opacity-30`}
+                    className={`border-b border-zinc-700 transition-colors duration-200 hover:bg-purple-700 bg-opacity-30`}
                     onClick={() => handleUserClick(user.id)}
                     onContextMenu={(e) => handleContextMenu(e, user.id)}
                   >

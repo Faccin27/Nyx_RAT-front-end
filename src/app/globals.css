@@ -23,3 +23,6 @@ body {
     text-wrap: balance;
   }
 }
+abbr{
+  text-decoration: none;
+}

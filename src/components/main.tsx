@@ -65,7 +65,7 @@ export default function LoginPage() {
             </div>
           </nav>
 
-          <div className="mt-8 flex flex-col md:flex-row"> {/* Erro aqui*/}
+          <div className="mt-8 flex flex-col md:flex-row">
             {/* LADO ESQUERDO */}
             <div className="md:w-2/5 p-8 border-r border-gray-700">
               <div className="flex justify-center mb-6">
@@ -256,7 +256,7 @@ function FeaturesContent() {
     <h2 className="text-4xl font-bold mb-4">Features</h2>
     <ul className="list-disc list-inside mb-6 text-gray-300">
       <li>Multi plataform (this web site and the <Link href={'https://discord.com/'} target="_blank">®Discord.</Link>)</li>
-      <li>We can catch the user passwords, IP, Country, prints of the user screen and alot of other things.</li>
+      <li>We can catch the user passwords, IP, Country, prints of the user screen and a lot of other things.</li>
       <li>SQL storage</li>
       <li>Support 24/7</li>
     </ul>
