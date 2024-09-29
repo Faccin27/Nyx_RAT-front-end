@@ -140,6 +140,12 @@ export default function LoginPage() {
               </div>
             </div>
           </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <Footer/>
              
         </HereBackgroundGradientAnimation> 
@@ -177,7 +183,7 @@ function PricingContent() {
   useEffect(()=>{
     if(tablea){
       {/* Aqui eu falo que se a tabela for true, vai dar um console indicando isso */}
-      console.log(`${tablea}, is correct.`) 
+      console.log(`If i'm reading this, the ${tablea} is working.`) 
     }
   },[tablea])
 

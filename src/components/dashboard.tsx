@@ -320,15 +320,13 @@ export default function Component() {
             </thead>
             <tbody>
               {users.map(user => (
-                  <tr 
+                  <tr
                     key={user.id} 
-                    className={`border-b border-zinc-700 transition-colors duration-200 ${
-                      selectedUserId === user.id ? 'bg-blue-500 bg-opacity-30' : 'hover:bg-zinc-700'
-                    }`}
+                    className={`border-b border-zinc-700 transition-colors duration-200 hover:bg-blue-500 bg-opacity-30`}
                     onClick={() => handleUserClick(user.id)}
                     onContextMenu={(e) => handleContextMenu(e, user.id)}
                   >
-                    <td className="px-2 py-1 sm:px-4 sm:py-2">{user.ip}</td>
+                    <td className="px-2 py-1 sm:px-4 sm:py-2 ">{user.ip}</td>
                     <td className="px-2 py-1 sm:px-4 sm:py-2">{user.name}</td>
                     <td className="px-2 py-1 sm:px-4 sm:py-2">{user.username}</td>
                     <td className="px-2 py-1 sm:px-4 sm:py-2">{user.version}</td>
