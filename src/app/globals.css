@@ -26,3 +26,30 @@ body {
 abbr{
   text-decoration: none;
 }
+/* Estilos para dispositivos móveis (default) */
+.container {
+  display: block;
+  padding: 10px;
+}
+
+/* Ajuste para telas maiores (largura mínima de 768px) */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+nav {
+  flex-direction: column;
+  text-align: center;
+}
+.form-container {
+  padding: 20px;
+  width: 100%;
+}
+.about-section {
+  margin-top: 20px;
+}
+.nav-buttons {
+  margin-top: 10px;
+}

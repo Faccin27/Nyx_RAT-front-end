@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import Logo from '@/assets/logo.png'
 import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
@@ -8,12 +8,13 @@ import TablePrice from "./table";
 import LearnMore from "./learnmore";
 import { useRouter } from 'next/navigation'
 import Footer from "./footer/footer";
+import { useState } from "react";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>('about');
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [accept, setAccept] = useState<boolean>(false);
-  
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -47,8 +48,12 @@ export default function LoginPage() {
               />
               <span className="text-white text-xl font-bold">NYX RAT</span>
             </div>
-            <div className="space-x-2">
+
+
+            <div className="flex items-center space-x-2"> 
+              
               {['about', 'download', 'pricing', 'features', 'terms of service'].map((tab) => (
+                
                 <button
                   key={tab}
                   className={`px-3 py-2 text-white hover:bg-white/10 rounded-md ${activeTab === tab ? 'bg-white/20' : ''}`}
@@ -119,7 +124,7 @@ export default function LoginPage() {
                    className="rounded text-purple-500 focus:ring-pink-500"
                    required
                     /> 
-                    <label htmlFor="accept" className="text-sm text-gray-300">I accept the Terms of Service</label>
+                    <label htmlFor="accept" className="text-sm text-gray-300">Terms of service</label>
                   <Link href="#" className="text-sm text-blue-400 hover:underline">Forgot your password?</Link>
                 </div>
               </form>
@@ -156,7 +161,7 @@ export default function LoginPage() {
 // Exemplo das funções de conteúdo
 function AboutContent() {
   return (
-    <div>
+    <div className="mt-8">
       <h2 className="text-xl font-bold mb-4">About Nyx RAT</h2>
       <p>Nyx RAT is a softaware designed to take a shadow control of the victimim computer. It can capture screenshots from the victim’s webcam, giving the our users full visual access. This softaware is often spread through the victim passwords, hisroty and more, compromising the victim’s privacy and posing risks like identity theft and blackmail.</p>
     </div>

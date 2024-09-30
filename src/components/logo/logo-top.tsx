@@ -2,6 +2,7 @@ import Image from "next/image";
 import Logo from '@/assets/logo.png'
 export default function LogaritomoLogo() {
     return(
+      <nav className="p-6 flex justify-between items-center absolute">
         <div className="flex items-center space-x-2">
               <Image
                 src={Logo}
@@ -12,5 +13,6 @@ export default function LogaritomoLogo() {
               />
               <span className="text-white text-xl font-bold">NYX  RAT</span>
             </div>
+            </nav>
     );
 }
