@@ -8,8 +8,11 @@ import Footer from "./footer/footer";
 import Image from 'next/image';
 import Exemplo from '@/assets/Captura de tela 2024-09-29 121808.png';
 import Exemplo2 from '@/assets/funcionalidades.png'
+import { useRouter } from "next/navigation";
 export default function LearnMore() {
+    const rota = useRouter()
     return (
+        
         <Background>
             <Logo />
             <div className="relative max-w-7xl mx-auto px-6 py-12 text-center">
@@ -53,16 +56,19 @@ export default function LearnMore() {
                         <Image
                         src={Exemplo2}
                         alt="The second example"
+                        className="rounded-xl shadow-xl border-4 border-purple-500 hover:scale-105 transition-transform duration-300 ease-in-out"
                         />
                     </div>
                 </div>
 
                 {/* Botão de voltar */}
                 <div className="mt-12">
-                    <Link href={'/'} className="inline-block w-48 bg-purple-600 hover:bg-purple-800 text-white py-3 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
-                        Back to Main Page
-                    </Link>
-                    
+                <button
+                className="relative w-40 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+                onClick={()=> rota.push('/')}
+                >
+                Back to Main Page
+                </button>
                 </div>
             </div>
 

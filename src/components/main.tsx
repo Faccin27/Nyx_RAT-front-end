@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
 import LearnMore from "./learnmore";
-import { useRouter } from "next/router";
+import { useRouter } from 'next/navigation'
 import Footer from "./footer/footer";
 
 export default function LoginPage() {
@@ -250,6 +250,7 @@ function PricingContent() {
 }
 
 function FeaturesContent() {
+  const rota = useRouter()
 
   return (
     <div className="relative z-10">
@@ -260,19 +261,31 @@ function FeaturesContent() {
       <li>SQL storage</li>
       <li>Support 24/7</li>
     </ul>
+    <button
+        className="relative w-40 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+        onClick={()=> rota.push('/learn-more')}
+        >
+          Learn More
+        </button>
 
-    <Link href={'learn-more'} className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105 " id="limpo">
-      <label>Learn More</label>
-      </Link>
   </div>
     )
   }
 
 function TermService() {
+  const rota = useRouter()
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">Terms of Service</h2>
       <p>When you but one of our products they become your propreety, and we shall not be held responsible for any use made of our products.</p>
+      <br />
+      <button
+        className="relative w-40 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+        onClick={()=> rota.push('/service-tems')}
+        >
+          Learn More
+        </button>
+
       
     </div>
     )
