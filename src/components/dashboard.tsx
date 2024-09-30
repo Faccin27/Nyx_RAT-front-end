@@ -166,7 +166,7 @@ export default function Component() {
           </div>
         </div>
   
-        <h2 className="text-3xl font-bold text-center mt-8">Informações do Sistema</h2>
+        <h2 className="text-3xl font-bold text-center mt-8">About the System</h2>
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-zinc-900 p-4 rounded-md">
             <strong>CPU:</strong>

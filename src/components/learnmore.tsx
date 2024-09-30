@@ -7,9 +7,7 @@ import Link from "next/link";
 import Footer from "./footer/footer";
 import Image from 'next/image';
 import Exemplo from '@/assets/Captura de tela 2024-09-29 121808.png';
-import Exemplo2 from '@/assets/funcionalidades.png';
-import logo from '@/assets/logo.png'
-
+import Exemplo2 from '@/assets/funcionalidades.png'
 export default function LearnMore() {
     return (
         <Background>
@@ -49,14 +47,12 @@ export default function LearnMore() {
                     </ul>
 
                     {/* Outra seção de exemplo */}
-                    <h2 className="text-2xl font-semibold text-white mt-12 mb-4">Additional Example:</h2>
+                    <h2 className="text-2xl font-semibold text-white mt-12 mb-4">Working Example:</h2>
                     
                     <div className="relative mx-auto max-w-3xl">
                         <Image
-                            src={Exemplo2}
-                            alt="Example of RAT functionality"
-                            width={800}
-                            className="rounded-xl shadow-xl border-4 border-purple-500 hover:scale-105 transition-transform duration-300 ease-in-out"
+                        src={Exemplo2}
+                        alt="The second example"
                         />
                     </div>
                 </div>
@@ -64,7 +60,7 @@ export default function LearnMore() {
                 {/* Botão de voltar */}
                 <div className="mt-12">
                     <Link href={'/'} className="inline-block w-48 bg-purple-600 hover:bg-purple-800 text-white py-3 rounded-full font-semibold text-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
-                        ◄ Back to Login Page
+                        Back to Main Page
                     </Link>
                     
                 </div>
