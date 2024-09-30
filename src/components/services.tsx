@@ -14,6 +14,9 @@ export default function Services() {
                 <h1></h1>
             </div>
             <div>
+                
+            </div>
+            <div>
                 <button 
                 className="relative w-40 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
                 onClick={()=> rota.push('/')}

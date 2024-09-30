@@ -6,6 +6,7 @@ import logo from '@/assets/logo.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from '@/data/teste.json';
 import { useParams } from 'next/navigation'
+import Footer from './footer/footer'
 
 interface User {
   id: number;
@@ -357,11 +358,7 @@ export default function Component() {
           </div>
         </main>
 
-      <footer className="p-4 flex justify-between text-blue-300 text-xs sm:text-sm relative z-10">
-        <span>Status: Nyx - Connected - {users.length}</span>
-        <span>The most powerfull remote acess tool created.</span>
-        <span>Nyx rat, since 2024</span>
-      </footer>
+      <Footer/>
     </div>
 
     {contextMenu.visible && <ContextMenu />}

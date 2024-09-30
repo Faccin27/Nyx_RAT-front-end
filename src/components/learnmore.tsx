@@ -68,7 +68,11 @@ export default function LearnMore() {
                 onClick={()=> rota.push('/')}
                 >
                 Back to Main Page
+                
                 </button>
+                <br />
+                <br />
+                <br />
                 </div>
             </div>
 
