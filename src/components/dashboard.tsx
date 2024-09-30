@@ -6,6 +6,9 @@ import logo from '@/assets/logo.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from '@/data/teste.json';
 import { useParams } from 'next/navigation'
+import imageModal from './imagemodal/imageModal'
+import screenshot from '@/assets/funcionalidades.png'
+import webcamimg from '@/assets/logo.png'
 
 interface User {
   id: number;
@@ -63,6 +66,9 @@ export default function Component() {
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const users: User[] = Data;
+  const [isimageModalOpen, setIsimageModalOpen] = useState(false);
+  const [modalTitle, setmodalTitle] = useState('');
+  const [modalImage, setmodalImage] = useState('');
 
 
 
@@ -90,6 +96,22 @@ export default function Component() {
       document.removeEventListener('mousedown', handleClickOutside as unknown as EventListener)
     }
   }, [])
+
+  const handleScreenshot = () => {
+    setmodalTitle('screenshot');
+    setmodalImage("@/assets/logo.png")
+    setIsimageModalOpen(true)
+  }
+
+  const handleWebcam = () => {
+    setmodalTitle('webcam');
+    setmodalImage("@/assets/logo.png")
+    setIsimageModalOpen(true)
+  }
+
+  const handleCloseimageModal = () =>{
+    setIsimageModalOpen(false)
+  }
 
   const handleContextMenu = (e: React.MouseEvent, userId: number) => {
     e.preventDefault()
@@ -231,8 +253,8 @@ export default function Component() {
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" >GET Victim Information</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victim" >GET Webcam pic</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victim" >GET Screnn Shot</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victim" onClick={handleWebcam} >GET Webcam pic</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victim" onClick={handleScreenshot}>GET Screenshot</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
         Stealer Options ▶
         {subMenu.visible && (
