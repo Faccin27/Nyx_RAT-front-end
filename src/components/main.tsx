@@ -5,16 +5,15 @@ import Logo from '@/assets/logo.png'
 import Image from 'next/image';
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
-import LearnMore from "./learnmore";
 import { useRouter } from 'next/navigation'
 import Footer from "./footer/footer";
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>('about');
   const [rememberMe, setRememberMe] = useState<boolean>(false);
   const [accept, setAccept] = useState<boolean>(false);
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -33,7 +32,7 @@ export default function LoginPage() {
     };
   }
 
-  
+ 
     return (
       
       <HereBackgroundGradientAnimation>         
@@ -48,27 +47,9 @@ export default function LoginPage() {
               />
               <span className="text-white text-xl font-bold">NYX RAT</span>
             </div>
+            </nav>
 
-
-            <div className="flex items-center space-x-2"> 
-              
-              {['about', 'download', 'pricing', 'features', 'terms of service'].map((tab) => (
-                
-                <button
-                  key={tab}
-                  className={`px-3 py-2 text-white hover:bg-white/10 rounded-md ${activeTab === tab ? 'bg-white/20' : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </button>
-              ))}
-              <button 
-                className="w-20 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
-                Sign In
-              </button>
-            </div>
-          </nav>
+          
 
           <div className="mt-8 flex flex-col md:flex-row">
             {/* LADO ESQUERDO */}
@@ -124,7 +105,7 @@ export default function LoginPage() {
                    className="rounded text-purple-500 focus:ring-pink-500"
                    required
                     /> 
-                    <label htmlFor="accept" className="text-sm text-gray-300">Terms of service</label>
+                    <label htmlFor="accept" className=" text-gray-300">Terms of service</label>
                   <Link href="#" className="text-sm text-blue-400 hover:underline">Forgot your password?</Link>
                 </div>
               </form>
@@ -132,6 +113,7 @@ export default function LoginPage() {
 
             {/* LADO DIREITO */}
             <div className="md:w-3/5 p-8 text-white relative">
+            <MenuHamburguer setActiveTab={setActiveTab}/>
            {renderContent()}
          
               <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -157,6 +139,55 @@ export default function LoginPage() {
       
     )
   }
+  function MenuHamburguer({setActiveTab}:MenuHamburguerProps) {
+    
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    
+
+
+
+    const Container = styled.nav<{ isOpen: boolean }>`
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: ${(props) => (props.isOpen ? 'column' : 'row')};
+    align-items: center;
+
+    @media (max-width: 425px) {
+      justify-content: flex-end;
+    }
+  `;
+    return(
+      <Container isOpen={isOpen}>
+        <div className="flex items-center space-x-2">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? 'X' : 'Menu'}
+          </button>
+          {isOpen && (
+            <div className="menu-items">
+              {['about', 'download', 'pricing', 'features', 'terms of service'].map((tab) => (
+                <button
+                  key={tab}
+                  className={`px-3 py-2 text-white hover:bg-white/10 rounded-md
+                    `}
+                  onClick={() => {
+                    setActiveTab(tab); // Atualiza o activeTab no componente pai
+                    setIsOpen(false); // Opcional: fechar o menu ao selecionar uma opção
+                  }}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              ))}
+              <button 
+                className="w-20 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
+                Sign In
+              </button>
+            </div>
+          )}
+        </div>
+      </Container>
+    )
+}
 
 // Exemplo das funções de conteúdo
 function AboutContent() {
