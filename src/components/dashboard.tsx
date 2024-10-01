@@ -3,6 +3,8 @@ import { useState, useEffect, useRef, MouseEvent } from 'react'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import logo from '@/assets/logo.png'
+import prtsc from '@/assets/screenshot.png'
+import webcam from '@/assets/webcam.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from '@/data/teste.json';
 import { useParams } from 'next/navigation'
@@ -63,6 +65,10 @@ export default function Component() {
   const subMenuRef = useRef<HTMLDivElement>(null)
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWebcamModalOpen, setIsWebcamModalOpen] = useState(false);
+  const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
+  const [webcamImage, setWebcamImage] = useState<string | null>(null);
+  const [screenshotImage, setScreenshotImage] = useState<string | null>(null);
   const users: User[] = Data;
 
 
@@ -115,6 +121,37 @@ export default function Component() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   }
+
+  const handleOpenWebcamModal = () => {
+    setIsWebcamModalOpen(true);
+    setContextMenu({ visible: false, x: 0, y: 0, userId: null });
+    setWebcamImage(webcam.src); 
+  }
+
+  const handleCloseWebcamModal = () => {
+    setIsWebcamModalOpen(false);
+    setWebcamImage(null);
+  }
+
+  const handleOpenScreenshotModal = () => {
+    setIsScreenshotModalOpen(true);
+    setContextMenu({ visible: false, x: 0, y: 0, userId: null });
+    setScreenshotImage(prtsc.src); 
+  }
+
+  const handleCloseScreenshotModal = () => {
+    setIsScreenshotModalOpen(false);
+    setScreenshotImage(null);
+  }
+
+  
+
+  interface ImageModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    title: string;
+    imageSrc: string | null;
+  }
  
   const Modal = () => {
     const selectedUser = users.find(user => user.id === selectedUserId);
@@ -132,7 +169,7 @@ export default function Component() {
       </div>
       {/* Botão de fechar */}
       
-      <button onClick={handleCloseModal} className="relative right-2 text-red-700">
+      <button onClick={handleCloseModal} className=" self-start text-red-700">
         CLOSE
       </button>
       <h2 className="text-3xl font-bold text-center">Victim informations</h2>
@@ -223,6 +260,27 @@ export default function Component() {
   );
 };
   
+
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSrc }) => {
+  if (!isOpen || !imageSrc) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto flex flex-col items-center relative">
+        <div className="absolute inset-0 flex items-center justify-center opacity-[2%] pointer-events-none">
+          <Image src={logo} alt="Nyx Logo" width={700} height={700} />
+        </div>
+        <button onClick={onClose} className="self-start text-red-700">
+          CLOSE
+        </button>
+        <h2 className="text-3xl font-bold text-center mb-4">{title}</h2>
+        <div className="flex-grow flex items-center justify-center">
+          <img src={imageSrc} alt={title} className="max-w-full max-h-full" />
+        </div>
+      </div>
+    </div>
+  );
+};
   
 
   const ContextMenu = () => (
@@ -232,8 +290,8 @@ export default function Component() {
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" >GET Victim Information</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a picture from the victim" >GET Webcam pic</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr title="Here you can take a print from the victim" >GET Screnn Shot</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenWebcamModal}><abbr title="Here you can take a picture from the victim" >GET Webcam pic</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenScreenshotModal}><abbr title="Here you can take a print from the victim" >GET Screnn Shot</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
         Stealer Options ▶
         {subMenu.visible && (
@@ -257,7 +315,7 @@ export default function Component() {
         <button
         
         >
-       Remove Victimin
+       Remove Victim
         </button>
         
         
@@ -362,7 +420,23 @@ export default function Component() {
     </div>
 
     {contextMenu.visible && <ContextMenu />}
-    {isModalOpen && <Modal />}
-    </HereBackgroundGradientAnimation>         
+      {isModalOpen && <Modal />}
+      {isWebcamModalOpen && (
+        <ImageModal
+          isOpen={isWebcamModalOpen}
+          onClose={handleCloseWebcamModal}
+          title="Webcam Image"
+          imageSrc={webcamImage}
+        />
+      )}
+      {isScreenshotModalOpen && (
+        <ImageModal
+          isOpen={isScreenshotModalOpen}
+          onClose={handleCloseScreenshotModal}
+          title="Screenshot"
+          imageSrc={screenshotImage}
+        />
+      )}
+    </HereBackgroundGradientAnimation>
   )
 }
