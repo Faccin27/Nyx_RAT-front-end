@@ -8,7 +8,7 @@ import TablePrice from "./table";
 import { useRouter } from 'next/navigation'
 import Footer from "./footer/footer";
 import { useState } from "react";
-import styled from "styled-components";
+import { IoMenuOutline } from 'react-icons/io5';
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>('about');
@@ -37,7 +37,7 @@ export default function LoginPage() {
       
       <HereBackgroundGradientAnimation>         
           <nav className="p-6 flex justify-between items-center">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 absolute left-10">
               <Image
                 src={Logo}
                 alt="Nyx rat logo"
@@ -45,10 +45,13 @@ export default function LoginPage() {
                 width={0}
                 height={0}
               />
-              <span className="text-white text-xl font-bold">NYX RAT</span>
+              
+              <h3 className="text-white text-xl font-bold">NYX RAT</h3>
+              
             </div>
+            <MenuHamburguer setActiveTab={setActiveTab}/> 
             </nav>
-
+            
           
 
           <div className="mt-8 flex flex-col md:flex-row">
@@ -113,7 +116,7 @@ export default function LoginPage() {
 
             {/* LADO DIREITO */}
             <div className="md:w-3/5 p-8 text-white relative">
-            <MenuHamburguer setActiveTab={setActiveTab}/>
+            
            {renderContent()}
          
               <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -140,31 +143,25 @@ export default function LoginPage() {
     )
   }
   function MenuHamburguer({setActiveTab}:MenuHamburguerProps) {
-    
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    
-
-
-
-    const Container = styled.nav<{ isOpen: boolean }>`
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: ${(props) => (props.isOpen ? 'column' : 'row')};
-    align-items: center;
-
-    @media (max-width: 425px) {
-      justify-content: flex-end;
-    }
-  `;
+       const [isOpen, setIsOpen] = useState<boolean>(false);
     return(
-      <Container isOpen={isOpen}>
-        <div className="flex items-center space-x-2">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? 'X' : 'Menu'}
-          </button>
-          {isOpen && (
-            <div className="menu-items">
+      <nav className={`absolute right-16 flex place-items-center space-x-1`}>
+     
+          {(
+            <>
+            <div className="flex justify-between items-right md:hidden">
+            <span 
+            className="cursor-pointer md:hidden block" 
+            onClick={() => setIsOpen(!isOpen)}>
+              <IoMenuOutline className="text-[40px]" /> {/* Definindo um tamanho específico */}
+          </span>
+             </div>
+            <ul className={`md:flex md:items-center space-y-4 md:space-y-0 md:space-x-4 absolute md:static md:bg-transparent w-full md:w-auto left-0 md:left-auto transition-all duration-300 ease-in-out ${
+    isOpen ? 'top-16 opacity-100' : 'top-[-400px] opacity-0 md:opacity-100'
+  }`}>
               {['about', 'download', 'pricing', 'features', 'terms of service'].map((tab) => (
+                
+                <li className="mx-4 md:items-center">
                 <button
                   key={tab}
                   className={`px-3 py-2 text-white hover:bg-white/10 rounded-md
@@ -173,19 +170,23 @@ export default function LoginPage() {
                     setActiveTab(tab); // Atualiza o activeTab no componente pai
                     setIsOpen(false); // Opcional: fechar o menu ao selecionar uma opção
                   }}
+                  
                 >
+                  
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </button>
+                </li>
               ))}
-              <button 
-                className="w-20 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-              >
+              <li className="mx-4">
+              <button className="w-20 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
                 Sign In
               </button>
-            </div>
+              </li>
+            </ul>
+            </>
           )}
-        </div>
-      </Container>
+          
+      </nav>
     )
 }
 
