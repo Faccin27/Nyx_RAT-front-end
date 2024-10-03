@@ -1,6 +1,18 @@
 [
-    {"name": "Faccin",
-    "registeredDate": "2023-01-15",
-    "expiryDate": "2038-01-15"
-}
+    {
+        "id": 1,
+        "name": "Faccin",
+        "password": "securePassword123",
+        "email": "faccin@example.com",
+        "photo": "/src/assets/webcam.png",
+        "registeredDate": "2023-01-15",
+        "expiryDate": "2038-01-15",
+        "gender": "Masculino",
+        "birthDate": "1990-05-20",
+        "phone": "+55 11 91234-5678",
+        "isActive": true,
+        "roles": ["user", "admin", "premium"],
+        "createdAt": "2023-01-15T10:00:00Z",
+        "updatedAt": "2024-10-03T12:00:00Z"
+    }
 ]

@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,12 +8,34 @@ import Logo from "@/assets/logo.png";
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
 import Footer from "./footer/footer";
+import userData from "@/data/user.json";
+
+const SIMULATED_LOGIN_STATE = 1;
+
+interface User {
+  id: number;
+  name: string;
+  password: string;
+  email: string;
+  photo: string;
+  registeredDate: string;
+  expiryDate: string;
+  gender: string;
+  birthDate: string;
+  phone: string;
+  isActive: boolean;
+  roles: string[];
+  createdAt: string;
+  updatedAt: string;
+}
 
 interface MenuHamburgerProps {
   setActiveTab: (tab: string) => void;
+  isLoggedIn: boolean;
+  handleLogout: () => void;
 }
 
-function MenuHamburger({ setActiveTab }: MenuHamburgerProps) {
+function MenuHamburger({ setActiveTab, isLoggedIn, handleLogout }: MenuHamburgerProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const menuItems = [
     "about",
@@ -66,11 +88,22 @@ function MenuHamburger({ setActiveTab }: MenuHamburgerProps) {
             </button>
           </li>
         ))}
-        <li className="px-4 py-2 md:py-0">
-          <button className="w-full px-8 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Sign In
-          </button>
-        </li>
+        {isLoggedIn ? (
+          <li className="px-4 py-2 md:py-0">
+            <button
+              className="w-full px-8 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </li>
+        ) : (
+          <li className="px-4 py-2 md:py-0">
+            <button className="w-full px-8 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+              Sign In
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   );
@@ -78,9 +111,25 @@ function MenuHamburger({ setActiveTab }: MenuHamburgerProps) {
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<string>("about");
-  const [rememberMe, setRememberMe] = useState<boolean>(false);
-  const [accept, setAccept] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // Simula o estado de login com base na constante SIMULATED_LOGIN_STATE
+    const loggedIn = SIMULATED_LOGIN_STATE === 1;
+    setIsLoggedIn(loggedIn);
+    if (loggedIn) {
+      setUser(userData[0]);
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -111,93 +160,20 @@ export default function LoginPage() {
             height={48}
           />
           <h3 className="text-white text-xl font-bold">NYX RAT</h3>
-        </div>{" "}
+        </div>
         <div className="ml-auto">
-          {" "}
-          {/* Adiciona ml-auto aqui */}
-          <MenuHamburger setActiveTab={setActiveTab} />
+          <MenuHamburger setActiveTab={setActiveTab} isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
         </div>
       </nav>
 
       <div className="mt-8 flex flex-col md:flex-row">
         {/* Left Side */}
         <div className="md:w-2/5 p-8 border-r border-gray-700">
-          <div className="flex justify-center mb-6">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-20 h-20 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-            </div>
-          </div>
-          <form className="space-y-4" action="/control-panel">
-            <div>
-              <label htmlFor="username" className="block text-white mb-1">
-                Username
-              </label>
-              <input
-                id="username"
-                type="text"
-                placeholder="Enter your username"
-                className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="block text-white mb-1">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-            >
-              LOGIN
-            </button>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="remember"
-                  checked={rememberMe}
-                  onChange={() => setRememberMe(!rememberMe)}
-                  className="rounded text-purple-500 focus:ring-pink-500"
-                />
-                <label htmlFor="remember" className="text-sm text-gray-300">
-                  Remember me
-                </label>
-              </div>
-              <input
-                type="checkbox"
-                id="accept"
-                checked={accept}
-                onChange={() => setAccept(!accept)}
-                className="rounded text-purple-500 focus:ring-pink-500"
-                required
-              />
-              <label htmlFor="accept" className=" text-gray-300">
-                Terms of service
-              </label>
-              <Link href="#" className="text-sm text-blue-400 hover:underline">
-                Forgot your password?
-              </Link>
-            </div>
-          </form>
+          {isLoggedIn && user ? (
+            <UserInfo user={user} handleLogout={handleLogout} />
+          ) : (
+            <LoginForm />
+          )}
         </div>
 
         {/* Right Side */}
@@ -219,16 +195,101 @@ export default function LoginPage() {
   );
 }
 
+interface UserInfoProps {
+  user: User;
+  handleLogout: () => void;
+}
+
+function UserInfo({ user, handleLogout }: UserInfoProps) {
+  return (
+    <div className="text-white">
+      <h2 className="text-2xl font-bold mb-4">Welcome, {user.name}!</h2>
+      <Image src={user.photo} alt={user.name} width={100} height={100} className="rounded-full mb-4" />
+      <p className="mb-2">Email: {user.email}</p>
+      <p className="mb-2">Gender: {user.gender}</p>
+      <p className="mb-2">Phone: {user.phone}</p>
+      <p className="mb-2">Registered: {new Date(user.registeredDate).toLocaleDateString()}</p>
+      <p className="mb-2">Expiry: {new Date(user.expiryDate).toLocaleDateString()}</p>
+      <p className="mb-4">Roles: {user.roles.join(', ')}</p>
+      <button
+        onClick={handleLogout}
+        className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      >
+        Logout
+      </button>
+    </div>
+  );
+}
+
+function LoginForm() {
+  return (
+    <form className="space-y-4">
+      <div>
+        <label htmlFor="username" className="block text-white mb-1">
+          Username
+        </label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter your username"
+          className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div>
+        <label htmlFor="password" className="block text-white mb-1">
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      >
+        LOGIN
+      </button>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="remember"
+            className="rounded text-purple-500 focus:ring-pink-500"
+          />
+          <label htmlFor="remember" className="text-sm text-gray-300">
+            Remember me
+          </label>
+        </div>
+        <input
+          type="checkbox"
+          id="accept"
+          className="rounded text-purple-500 focus:ring-pink-500"
+          required
+        />
+        <label htmlFor="accept" className="text-gray-300">
+          Terms of service
+        </label>
+        <Link href="#" className="text-sm text-blue-400 hover:underline">
+          Forgot your password?
+        </Link>
+      </div>
+    </form>
+  );
+}
+
 function AboutContent() {
   return (
     <div className="mt-8">
       <h2 className="text-xl font-bold mb-4">About Nyx RAT</h2>
       <p>
-        Nyx RAT is a software designed to take shadow control of the victim's
-        computer. It can capture screenshots from the victim's webcam, giving
-        our users full visual access. This software is often spread through the
-        victim's passwords, history and more, compromising the victim's privacy
-        and posing risks like identity theft and blackmail.
+        Nyx RAT is a software designed for remote system administration and management.
+        It provides advanced features for IT professionals and system administrators
+        to efficiently manage and monitor computer systems remotely.
       </p>
     </div>
   );
@@ -239,15 +300,15 @@ function DownloadContent() {
     <div>
       <h2 className="text-xl font-bold mb-4">Download Nyx RAT</h2>
       <p>
-        To download our RAT, you need to choose one of the plans in the Plans
-        section
+        To download Nyx RAT, you need to choose one of the plans in the Pricing section.
+        Each plan offers different features and capabilities to suit your needs.
       </p>
       <br />
       <button
         className="w-60 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-        onClick={() => alert("You need to choose one of our plans to continue")}
+        onClick={() => alert("Please select a plan from the Pricing section to proceed with the download.")}
       >
-        Download Now
+        View Pricing Plans
       </button>
     </div>
   );
@@ -260,16 +321,9 @@ function PricingContent() {
     <div className="relative z-10">
       <h2 className="text-4xl font-bold mb-4">Pricing</h2>
       <p className="mb-6 text-gray-300">
-        Choose the plan that fits your needs. We have options for everyone!
+        Choose the plan that fits your needs. We have options for various requirements.
       </p>
       <div className="grid grid-cols-2 gap-4">
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Starting Version</h3>
-          <p className="text-2xl font-bold mb-4">Free</p>
-          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-        </div>
         <div className="border border-gray-700 p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Basic</h3>
           <p className="text-2xl font-bold mb-4">$9.99/mo</p>
@@ -284,20 +338,13 @@ function PricingContent() {
             Choose Plan
           </button>
         </div>
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Ultra</h3>
-          <p className="text-2xl font-bold mb-4">$69.99/mo</p>
-          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-        </div>
       </div>
       <br />
       <button
         className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
         onClick={() => setShowTable(!showTable)}
       >
-        {showTable ? "Close" : "Details"}
+        {showTable ? "Hide Details" : "Show Details"}
       </button>
       {showTable && <TablePrice />}
     </div>
