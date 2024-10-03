@@ -67,7 +67,7 @@ function MenuHamburger({ setActiveTab }: MenuHamburgerProps) {
           </li>
         ))}
         <li className="px-4 py-2 md:py-0">
-          <button className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+          <button className="w-full px-8 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
             Sign In
           </button>
         </li>
