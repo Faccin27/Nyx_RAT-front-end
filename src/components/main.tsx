@@ -9,8 +9,9 @@ import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animat
 import TablePrice from "./table";
 import Footer from "./footer/footer";
 import userData from "@/data/user.json";
+import LoginRegisterForm from '@/components/loginform'; 
 
-const SIMULATED_LOGIN_STATE = 1;
+const SIMULATED_LOGIN_STATE = 0;
 
 interface User {
   id: number;
@@ -116,8 +117,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Simula o estado de login com base na constante SIMULATED_LOGIN_STATE
-    const loggedIn = SIMULATED_LOGIN_STATE === 1;
+    const loggedIn = SIMULATED_LOGIN_STATE === 0;
     setIsLoggedIn(loggedIn);
     if (loggedIn) {
       setUser(userData[0]);
@@ -172,7 +172,7 @@ export default function LoginPage() {
           {isLoggedIn && user ? (
             <UserInfo user={user} handleLogout={handleLogout} />
           ) : (
-            <LoginForm />
+            <LoginRegisterForm />
           )}
         </div>
 
