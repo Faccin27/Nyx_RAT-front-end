@@ -24,6 +24,7 @@ function LoginRegisterForm() {
               className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+          
           <div>
             <label htmlFor="password" className="block text-white mb-1">
               Password
@@ -86,6 +87,17 @@ function LoginRegisterForm() {
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+            <div>
+            <label htmlFor="reg-phone" className="block text-white mb-1">
+              Phone
+            </label>
+            <input
+              id="reg-phone"
+              name="reg-phone"
+              type="tel"
+              placeholder="Enter your phone number"
+              className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
           <div>
             <label htmlFor="reg-password" className="block text-white mb-1">
@@ -99,7 +111,6 @@ function LoginRegisterForm() {
               className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="reg-birthday" className="block text-white mb-1">
                 Birthday
@@ -123,10 +134,9 @@ function LoginRegisterForm() {
                 <option value="">Select</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-                <option value="other">Other</option>
               </select>
             </div>
-          </div>
+            </div>
           <div className="flex items-center space-x-2">
             <input
               type="checkbox"
