@@ -240,12 +240,12 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
             style={{ top: '0', left: '100%', minWidth: 250 }}
           >
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
-              <abbr className='no-underline' title='Here you can steal the user Passwords'><button onClick={()=> setIsOpenPassowrd(true)}> <p>Steal Passwords</p> </button></abbr>
+              <abbr className='no-underline' title='Here you can steal the user Passwords'>Steal Passwords</abbr>
             </div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin History'>Steal History</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Downloads'>Steal Downloads</abbr></div>
-            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Discord'>Steal Discord</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr  title='Here you can steal the victmin Cookies'> Steal Cookies</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr  title='Here you can steal the victmin History'>Steal History</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr  title='Here you can steal the victmin Downloads'>Steal Downloads</abbr></div>
+            <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr  title='Here you can steal the victmin Discord'>Steal Discord</abbr></div>
           </div>
         )}
       </div>

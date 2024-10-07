@@ -201,6 +201,7 @@ interface UserInfoProps {
 }
 
 function UserInfo({ user, handleLogout }: UserInfoProps) {
+  const rota = useRouter()
   return (
     <div className="text-white">
       <h2 className="text-2xl font-bold mb-4">Welcome, {user.name}!</h2>
@@ -216,6 +217,14 @@ function UserInfo({ user, handleLogout }: UserInfoProps) {
         className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
       >
         Logout
+      </button>
+      <br />
+      <br />
+      <button
+      onClick={()=>rota.push('/profile')}
+      className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+      >
+        Edit Profile
       </button>
     </div>
   );
