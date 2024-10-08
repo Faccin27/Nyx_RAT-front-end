@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 function LoginRegisterForm() {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -25,6 +27,28 @@ function LoginRegisterForm() {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:3001/users/login", {
+        email: formData.email,
+        pass: formData.password,
+      });
+
+      if (response.data.token) {
+        // Salvar o token nos cookies
+        Cookies.set('token', response.data.token, { expires: 7 }); // O token expira em 7 dias
+        
+        console.log("User logged in successfully");
+        // Redirecionar para a página principal ou dashboard
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      // Aqui você pode adicionar um modal ou mensagem de erro para o usuário
+    }
   };
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -57,17 +81,18 @@ function LoginRegisterForm() {
   return (
     <div>
       {isLoginForm ? (
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleLogin}>
           <div>
-            <label htmlFor="username" className="block text-white mb-1">
-              Username
+            <label htmlFor="email" className="block text-white mb-1">
+              Email
             </label>
             <input
-              id="username"
-              name="username"
-              type="text"
-              placeholder="Enter your username"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
               className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleInputChange}
             />
           </div>
 
@@ -81,6 +106,7 @@ function LoginRegisterForm() {
               type="password"
               placeholder="Enter your password"
               className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onChange={handleInputChange}
             />
           </div>
           <div className="flex items-center justify-between">
