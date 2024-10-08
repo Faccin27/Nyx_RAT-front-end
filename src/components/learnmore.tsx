@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Background from "./background/background";
+import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Logo from "./logo/logo-top";
 import Link from "next/link";
 import Footer from "./footer/footer";
+import Lago from '@/assets/logo.png'
 import Image from 'next/image';
 import Exemplo from '@/assets/Captura de tela 2024-09-29 121808.png';
 import Exemplo2 from '@/assets/funcionalidades.png'
@@ -13,8 +14,16 @@ export default function LearnMore() {
     const rota = useRouter()
     return (
         
-        <Background>
+        <HereBackgroundGradientAnimation>
             <Logo />
+            <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                        <Image
+                        src={Lago}
+                        alt="Nyx Logo"
+                        width={10000}
+                        height={10000}
+                        />
+                    </div>
             <div className="relative max-w-7xl mx-auto px-6 py-12 text-center">
                 {/* Título principal */}
                 <h1 className="text-4xl font-bold text-white mb-8 drop-shadow-lg">
@@ -77,6 +86,6 @@ export default function LearnMore() {
             </div>
 
             <Footer />
-        </Background>
+        </HereBackgroundGradientAnimation>
     );
 }

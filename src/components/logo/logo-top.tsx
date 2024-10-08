@@ -2,7 +2,7 @@ import Image from "next/image";
 import Logo from '@/assets/logo.png'
 export default function LogaritomoLogo() {
     return(
-      <nav className="p-6 flex justify-between items-center absolute">
+      <nav className="p-6 flex justify-between items-center fixed z-50">
         <div className="flex items-center space-x-2">
               <Image
                 src={Logo}

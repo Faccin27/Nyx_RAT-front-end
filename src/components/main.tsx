@@ -10,6 +10,7 @@ import TablePrice from "./table";
 import Footer from "./footer/footer";
 import userData from "@/data/user.json";
 import LoginRegisterForm from '@/components/loginform'; 
+import Background from "./background/background";
 
 const SIMULATED_LOGIN_STATE = 0;
 
@@ -149,7 +150,7 @@ export default function LoginPage() {
   };
 
   return (
-    <HereBackgroundGradientAnimation>
+    <Background>
       <nav className="p-6 flex justify-between items-center">
         <div className="flex items-center space-x-2 absolute left-10">
           <Image
@@ -179,19 +180,10 @@ export default function LoginPage() {
         {/* Right Side */}
         <div className="md:w-3/5 p-8 text-white relative">
           {renderContent()}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <Image
-              src={Logo}
-              alt="Logo"
-              className="rounded-full"
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
         </div>
       </div>
       <Footer />
-    </HereBackgroundGradientAnimation>
+    </Background>
   );
 }
 

@@ -10,8 +10,8 @@ export default function Background({children}: Fundao) {
                         <Image
                         src={logo}
                         alt="Nyx Logo"
-                        width={10000}
-                        height={10000}
+                        width={800}
+                        height={800}
                         />
                     </div>
         {children}
