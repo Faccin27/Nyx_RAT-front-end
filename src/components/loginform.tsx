@@ -1,8 +1,8 @@
-
 import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import RegistrationModal from './ui/registerModal';
 
 function LoginRegisterForm() {
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -14,6 +14,8 @@ function LoginRegisterForm() {
     birthday: "",
     gender: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
 
   const toggleForm = () => {
     setIsLoginForm(!isLoginForm);
@@ -39,16 +41,13 @@ function LoginRegisterForm() {
       });
 
       if (response.data.token) {
-        // 30m
         var in30Minutes = 1/48;
-
         Cookies.set('token', response.data.token, { expires: in30Minutes }); 
-        
         console.log("User logged in successfully");
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      // Aqui você pode adicionar um modal ou mensagem de erro para o usuário
+      // You might want to show an error message to the user here
     }
   };
 
@@ -72,11 +71,27 @@ function LoginRegisterForm() {
       });
 
       console.log("User registered successfully:", response.data);
-      // Aqui sera o modal de usuario registrado com sucesso
+      setIsRegistrationSuccess(true);
+      setIsModalOpen(true);
     } catch (error) {
       console.error("Error registering user:", error);
-      // Aqui um modal seguindo o mesmo padrão para apresentar o erro.
+      setIsRegistrationSuccess(false);
+      setIsModalOpen(true);
     }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLoginClick = () => {
+    setIsModalOpen(false);
+    setIsLoginForm(true);
+  };
+
+  const handleSupportClick = () => {
+    // Implement support functionality here
+    console.log("Support clicked");
   };
 
   return (
@@ -241,6 +256,14 @@ function LoginRegisterForm() {
       >
         {isLoginForm ? "Register" : "Login"}
       </button>
+
+      <RegistrationModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        isSuccess={isRegistrationSuccess}
+        onLogin={handleLoginClick}
+        onSupport={handleSupportClick}
+      />
     </div>
   );
 }
