@@ -11,23 +11,8 @@ import Footer from "./footer/footer";
 import LoginRegisterForm from '@/components/loginform';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { checkLoginStatus, User } from '@/utils/auth'; 
 
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  photo: string;
-  registeredDate: string;
-  expiryDate: string;
-  gender: string;
-  birthDate: string;
-  phone: string;
-  isActive: boolean;
-  role: string[];
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface MenuHamburgerProps {
   setActiveTab: (tab: string) => void;
@@ -109,40 +94,19 @@ function MenuHamburger({ setActiveTab, isLoggedIn, handleLogout }: MenuHamburger
   );
 }
 
+
 function useUserAuthentication() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
   
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = Cookies.get('token');
-      
-      if (token) {
-        try {
-          const response = await axios.get('http://localhost:3001/users/me', {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          });
-          
-          if (response.status === 200) {
-            setIsLoggedIn(true);
-            setUser(response.data);
-          }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-          // se for invalido o token manda p login dnv.
-          Cookies.remove('token');
-          setIsLoggedIn(false);
-          setUser(null);
-        }
-      } else {
-        setIsLoggedIn(false);
-        setUser(null);
-      }
+    const fetchLoginStatus = async () => {
+      const { isLoggedIn, user } = await checkLoginStatus();
+      setIsLoggedIn(isLoggedIn);
+      setUser(user);
     };
     
-    checkLoginStatus();
+    fetchLoginStatus();
   }, []);
 
   return { isLoggedIn, user, setIsLoggedIn, setUser };
