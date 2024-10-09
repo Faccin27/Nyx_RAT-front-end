@@ -112,28 +112,38 @@ function MenuHamburger({ setActiveTab, isLoggedIn, handleLogout }: MenuHamburger
 function useUserAuthentication() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
-  const token = document.cookie.split('token=')?.[1]
   
   useEffect(() => {
     const checkLoginStatus = async () => {
-      try {
-        console.log('Token enviado:', document.cookie); 
-        console.log(token)
-        const response = await axios.get('http://localhost:3001/users/me', {headers: {
-          Authorization: `Bearer ${token}`
+      const token = Cookies.get('token');
+      
+      if (token) {
+        try {
+          const response = await axios.get('http://localhost:3001/users/me', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          
+          if (response.status === 200) {
+            setIsLoggedIn(true);
+            setUser(response.data);
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          // se for invalido o token manda p login dnv.
+          Cookies.remove('token');
+          setIsLoggedIn(false);
+          setUser(null);
         }
-      });
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-          setUser(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
       }
     };
+    
     checkLoginStatus();
   }, []);
-  
 
   return { isLoggedIn, user, setIsLoggedIn, setUser };
 }
