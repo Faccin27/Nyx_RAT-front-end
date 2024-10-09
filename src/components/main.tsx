@@ -8,15 +8,14 @@ import Logo from "@/assets/logo.png";
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
 import Footer from "./footer/footer";
-import userData from "@/data/user.json";
-import LoginRegisterForm from '@/components/loginform'; 
+import LoginRegisterForm from '@/components/loginform';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const SIMULATED_LOGIN_STATE = 0;
 
 interface User {
   id: number;
   name: string;
-  password: string;
   email: string;
   photo: string;
   registeredDate: string;
@@ -25,7 +24,7 @@ interface User {
   birthDate: string;
   phone: string;
   isActive: boolean;
-  roles: string[];
+  role: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -110,25 +109,48 @@ function MenuHamburger({ setActiveTab, isLoggedIn, handleLogout }: MenuHamburger
   );
 }
 
-export default function LoginPage() {
-  const [activeTab, setActiveTab] = useState<string>("about");
+function useUserAuthentication() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-
+  const token = document.cookie.split('token=')?.[1]
+  
   useEffect(() => {
-    const loggedIn = SIMULATED_LOGIN_STATE === 0;
-    setIsLoggedIn(loggedIn);
-    if (loggedIn) {
-      setUser(userData[0]);
-    } else {
-      setUser(null);
-    }
+    const checkLoginStatus = async () => {
+      try {
+        console.log('Token enviado:', document.cookie); 
+        console.log(token)
+        const response = await axios.get('http://localhost:3001/users/me', {headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+          setUser(response.data);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    checkLoginStatus();
   }, []);
+  
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUser(null);
+  return { isLoggedIn, user, setIsLoggedIn, setUser };
+}
+
+export default function LoginPage() {
+  const [activeTab, setActiveTab] = useState<string>("about");
+  const router = useRouter();
+  const { isLoggedIn, user, setIsLoggedIn, setUser } = useUserAuthentication();
+
+  const handleLogout = async () => {
+    try {
+      Cookies.remove('token')
+      setIsLoggedIn(false);
+      setUser(null);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   };
 
   const renderContent = () => {
@@ -204,13 +226,13 @@ function UserInfo({ user, handleLogout }: UserInfoProps) {
   return (
     <div className="text-white">
       <h2 className="text-2xl font-bold mb-4">Welcome, {user.name}!</h2>
-      <Image src={user.photo} alt={user.name} width={100} height={100} className="rounded-full mb-4" />
+      {/* <Image src={user.photo} alt={user.name} width={100} height={100} className="rounded-full mb-4" /> */}
       <p className="mb-2">Email: {user.email}</p>
       <p className="mb-2">Gender: {user.gender}</p>
       <p className="mb-2">Phone: {user.phone}</p>
       <p className="mb-2">Registered: {new Date(user.registeredDate).toLocaleDateString()}</p>
       <p className="mb-2">Expiry: {new Date(user.expiryDate).toLocaleDateString()}</p>
-      <p className="mb-4">Roles: {user.roles.join(', ')}</p>
+      <p className="mb-4">Role: {user.role}</p>
       <button
         onClick={handleLogout}
         className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
@@ -218,67 +240,6 @@ function UserInfo({ user, handleLogout }: UserInfoProps) {
         Logout
       </button>
     </div>
-  );
-}
-
-function LoginForm() {
-  return (
-    <form className="space-y-4">
-      <div>
-        <label htmlFor="username" className="block text-white mb-1">
-          Username
-        </label>
-        <input
-          id="username"
-          name="username"
-          type="text"
-          placeholder="Enter your username"
-          className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <label htmlFor="password" className="block text-white mb-1">
-          Password
-        </label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="Enter your password"
-          className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-      >
-        LOGIN
-      </button>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <input
-            type="checkbox"
-            id="remember"
-            className="rounded text-purple-500 focus:ring-pink-500"
-          />
-          <label htmlFor="remember" className="text-sm text-gray-300">
-            Remember me
-          </label>
-        </div>
-        <input
-          type="checkbox"
-          id="accept"
-          className="rounded text-purple-500 focus:ring-pink-500"
-          required
-        />
-        <label htmlFor="accept" className="text-gray-300">
-          Terms of service
-        </label>
-        <Link href="#" className="text-sm text-blue-400 hover:underline">
-          Forgot your password?
-        </Link>
-      </div>
-    </form>
   );
 }
 

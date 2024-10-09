@@ -39,11 +39,12 @@ function LoginRegisterForm() {
       });
 
       if (response.data.token) {
-        // Salvar o token nos cookies
-        Cookies.set('token', response.data.token, { expires: 7 }); // O token expira em 7 dias
+        // 30m
+        var in30Minutes = 1/48;
+
+        Cookies.set('token', response.data.token, { expires: in30Minutes }); 
         
         console.log("User logged in successfully");
-        // Redirecionar para a página principal ou dashboard
       }
     } catch (error) {
       console.error("Error logging in:", error);
