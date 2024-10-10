@@ -1,97 +1,154 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import axios from "axios";
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import Link from 'next/link';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import RegistrationModal from './ui/registerModal';
 
-function LoginRegisterForm() {
-  const [isLoginForm, setIsLoginForm] = useState(true);
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    phone: "",
-    birthday: "",
-    gender: "",
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+interface FormData {
+  username: string;
+  email: string;
+  password: string;
+  phone: string;
+  birthday: string;
+  gender: string;
+}
 
-  const toggleForm = () => {
+interface Errors {
+  username?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+  birthday?: string;
+  gender?: string;
+  terms?: string;
+  login?: string;
+}
+
+const LoginRegisterForm: React.FC = () => {
+  const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
+  const [formData, setFormData] = useState<FormData>({
+    username: '',
+    email: '',
+    password: '',
+    phone: '',
+    birthday: '',
+    gender: '',
+  });
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState<boolean>(false);
+  const [errors, setErrors] = useState<Errors>({});
+  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+
+  const toggleForm = (): void => {
     setIsLoginForm(!isLoginForm);
+    setErrors({});
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: '',
+    }));
   };
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const validateForm = (): boolean => {
+    const newErrors: Errors = {};
 
-    try {
-      const response = await axios.post("http://localhost:3001/users/login", {
-        email: formData.email,
-        pass: formData.password,
-      });
-
-      if (response.data.token) {
-        var in30Minutes = 1/48;
-        Cookies.set('token', response.data.token, { expires: in30Minutes }); 
-        console.log("User logged in successfully");
+    if (!isLoginForm) {
+      if (formData.username.length < 5) {
+        newErrors.username = 'Username must be at least 5 characters long';
       }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      // You might want to show an error message to the user here
+
+
+
+      const birthDate = new Date(formData.birthday);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      if (age < 16) {
+        newErrors.birthday = 'You must be at least 16 years old';
+      }
+
+      if (!acceptTerms) {
+        newErrors.terms = 'You must accept the Terms of Service';
+      }
     }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    if (validateForm()) {
+      try {
+        const response = await axios.post('http://localhost:3001/users/login', {
+          email: formData.email,
+          pass: formData.password,
+        });
 
-    try {
-      const response = await axios.post("http://localhost:3001/users/", {
-        name: formData.username,
-        password: formData.password,
-        email: formData.email,
-        photo: null,
-        registeredDate: new Date().toISOString(),
-        expiryDate: new Date(
-          new Date().setFullYear(new Date().getFullYear() + 1)
-        ).toISOString(),
-        gender: formData.gender === "male" ? "Masculino" : "Feminino",
-        birthDate: new Date(formData.birthday).toISOString(),
-        phone: formData.phone,
-        role: "USER",
-      });
-
-      console.log("User registered successfully:", response.data);
-      setIsRegistrationSuccess(true);
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error("Error registering user:", error);
-      setIsRegistrationSuccess(false);
-      setIsModalOpen(true);
+        if (response.data.token) {
+          const in30Minutes = 1/48;
+          Cookies.set('token', response.data.token, { expires: in30Minutes }); 
+          console.log('User logged in successfully');
+        }
+      } catch (error) {
+        console.error('Error logging in:', error);
+        setErrors({ login: 'Invalid email or password' });
+      }
     }
   };
 
-  const handleCloseModal = () => {
+  const handleRegister = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+    if (validateForm()) {
+      try {
+        const response = await axios.post('http://localhost:3001/users/', {
+          name: formData.username,
+          password: formData.password,
+          email: formData.email,
+          photo: null,
+          registeredDate: new Date().toISOString(),
+          expiryDate: new Date(
+            new Date().setFullYear(new Date().getFullYear() + 1)
+          ).toISOString(),
+          gender: formData.gender === 'male' ? 'Masculino' : 'Feminino',
+          birthDate: new Date(formData.birthday).toISOString(),
+          phone: formData.phone,
+          role: 'USER',
+        });
+
+        console.log('User registered successfully:', response.data);
+        setIsRegistrationSuccess(true);
+        setIsModalOpen(true);
+      } catch (error) {
+        console.error('Error registering user:', error);
+        setIsRegistrationSuccess(false);
+        setIsModalOpen(true);
+      }
+    }
+  };
+
+  const handleCloseModal = (): void => {
     setIsModalOpen(false);
   };
 
-  const handleLoginClick = () => {
+  const handleLoginClick = (): void => {
     setIsModalOpen(false);
     setIsLoginForm(true);
   };
 
-  const handleSupportClick = () => {
-    // Implement support functionality here
-    console.log("Support clicked");
+  const handleSupportClick = (): void => {
+    console.log('Support clicked');
   };
 
   return (
@@ -125,6 +182,7 @@ function LoginRegisterForm() {
               onChange={handleInputChange}
             />
           </div>
+          {errors.login && <p className="text-red-500 text-sm">{errors.login}</p>}
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <input
@@ -163,6 +221,7 @@ function LoginRegisterForm() {
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={handleInputChange}
               />
+              {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
             </div>
             <div>
               <label htmlFor="email" className="block text-white mb-1">
@@ -188,7 +247,9 @@ function LoginRegisterForm() {
                 placeholder="Enter your phone number"
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={handleInputChange}
+                pattern="\d*"
               />
+              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
             </div>
             <div>
               <label htmlFor="password" className="block text-white mb-1">
@@ -214,6 +275,7 @@ function LoginRegisterForm() {
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={handleInputChange}
               />
+              {errors.birthday && <p className="text-red-500 text-sm">{errors.birthday}</p>}
             </div>
             <div>
               <label htmlFor="gender" className="block text-white mb-1">
@@ -236,15 +298,18 @@ function LoginRegisterForm() {
               type="checkbox"
               id="reg-accept"
               className="rounded text-purple-500 focus:ring-pink-500"
-              required
+              checked={acceptTerms}
+              onChange={(e) => setAcceptTerms(e.target.checked)}
             />
             <label htmlFor="reg-accept" className="text-sm text-gray-300">
               I accept the Terms of Service
             </label>
           </div>
+          {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
           <button
             type="submit"
             className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            disabled={!acceptTerms}
           >
             REGISTER
           </button>
@@ -254,7 +319,7 @@ function LoginRegisterForm() {
         onClick={toggleForm}
         className="mt-4 text-sm text-blue-400 hover:underline"
       >
-        {isLoginForm ? "Register" : "Login"}
+        {isLoginForm ? 'Register' : 'Login'}
       </button>
 
       <RegistrationModal
@@ -266,6 +331,6 @@ function LoginRegisterForm() {
       />
     </div>
   );
-}
+};
 
 export default LoginRegisterForm;
