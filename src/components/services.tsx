@@ -86,7 +86,7 @@ export default function Services() {
                         className="relative w-40 bg-purple-700 hover:bg-purple-500 text-white py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
                         onClick={() => rota.push('/')}
                     >
-                        Back to Main Page
+                        Back to Main
                     </button>
                 </div>
                 </div>
