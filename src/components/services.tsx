@@ -62,7 +62,7 @@ export default function Services() {
             <main className="flex flex-col items-center justify-center text-white">
                 {/* Título Principal */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl font-bold text-purple-500 border-b-2 border-purple-500 pb-2">
+                    <h1 className="text-4xl font-bold text-white mb-8 drop-shadow-lg">
                         Terms of Service
                     </h1>
                 </div>
@@ -72,7 +72,7 @@ export default function Services() {
                     <ol className="list-decimal pl-4 space-y-6">
                         {termos.map(({ title, content }, index) => (
                             <li key={index} className="space-y-2">
-                                <h2 className="text-2xl font-semibold text-purple-400">
+                                <h2 className="text-2xl font-semibold text-white mt-12 mb-4">
                                     {title}
                                 </h2>
                                 <p className="text-lg leading-relaxed">
