@@ -1,4 +1,5 @@
 
+import http from '@/components/http/http';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -23,7 +24,7 @@ export async function checkLoginStatus(): Promise<{ isLoggedIn: boolean; user: U
   
   if (token) {
     try {
-      const response = await axios.get('http://localhost:3001/users/me', {
+      const response = await http.get('users/me', {
         headers: {
           Authorization: `Bearer ${token}`
         }

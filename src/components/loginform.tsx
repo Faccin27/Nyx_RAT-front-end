@@ -3,6 +3,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import RegistrationModal from './ui/registerModal';
+import http from './http/http';
 
 interface FormData {
   username: string;
@@ -91,7 +92,7 @@ const LoginRegisterForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:3001/users/login', {
+        const response = await http.post('users/login', {
           email: formData.email,
           pass: formData.password,
         });
@@ -112,7 +113,7 @@ const LoginRegisterForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:3001/users/', {
+        const response = await http.post('users/', {
           name: formData.username,
           password: formData.password,
           email: formData.email,
@@ -237,21 +238,6 @@ const LoginRegisterForm: React.FC = () => {
               />
             </div>
             <div>
-              <label htmlFor="phone" className="block text-white mb-1">
-                Phone
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="Enter your phone number"
-                className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onChange={handleInputChange}
-                pattern="\d*"
-              />
-              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-            </div>
-            <div>
               <label htmlFor="password" className="block text-white mb-1">
                 Password
               </label>
@@ -275,7 +261,6 @@ const LoginRegisterForm: React.FC = () => {
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={handleInputChange}
               />
-              {errors.birthday && <p className="text-red-500 text-sm">{errors.birthday}</p>}
             </div>
             <div>
               <label htmlFor="gender" className="block text-white mb-1">

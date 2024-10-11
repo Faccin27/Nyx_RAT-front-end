@@ -243,7 +243,7 @@ function DownloadContent() {
 
 function PricingContent() {
   const [showTable, setShowTable] = useState(false);
-
+  const navegando = useRouter()
   return (
     <div className="relative z-10">
       <h2 className="text-4xl font-bold mb-4">Pricing</h2>
@@ -269,11 +269,10 @@ function PricingContent() {
       <br />
       <button
         className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-        onClick={() => setShowTable(!showTable)}
+        onClick={() => navegando.push('/details')}
       >
-        {showTable ? "Hide Details" : "Show Details"}
+        Show Details
       </button>
-      {showTable && <TablePrice />}
     </div>
   );
 }
