@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
-import Logo from "@/assets/logo.png";
+import logo from "@/assets/logo.png";
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import TablePrice from "./table";
 import Footer from "./footer/footer";
@@ -12,7 +12,9 @@ import LoginRegisterForm from '@/components/loginform';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { checkLoginStatus, User } from '@/utils/auth'; 
+import Logo from '@/components/logo/logo-top'
 import  Background from '../components/background/background'
+
 
 
 interface MenuHamburgerProps {
@@ -150,7 +152,7 @@ export default function LoginPage() {
       <nav className="p-6 flex justify-between items-center">
         <div className="flex items-center space-x-2 absolute left-10">
           <Image
-            src={Logo}
+            src={logo}
             alt="Nyx rat logo"
             className="rounded-full w-12 h-12"
             width={48}
@@ -241,41 +243,158 @@ function DownloadContent() {
   );
 }
 
-function PricingContent() {
-  const [showTable, setShowTable] = useState(false);
-  const navegando = useRouter()
+function Modal () {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+const handleCloseModal = () => {
+  setIsModalOpen(false);
+}
   return (
-    <div className="relative z-10">
-      <h2 className="text-4xl font-bold mb-4">Pricing</h2>
-      <p className="mb-6 text-gray-300">
-        Choose the plan that fits your needs. We have options for various requirements.
-      </p>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Basic</h3>
-          <p className="text-2xl font-bold mb-4">$9.99/mo</p>
-          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
-        </div>
-        <div className="border border-gray-700 p-4 rounded-lg">
-          <h3 className="text-xl font-bold mb-2">Pro</h3>
-          <p className="text-2xl font-bold mb-4">$29.99/mo</p>
-          <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
-            Choose Plan
-          </button>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6 ">
+    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none ">
+        <Image
+          src={logo}
+          alt="Nyx Logo"
+          width={700}
+          height={700}
+        />
+      </div>
+      {/* Botão de fechar */}
+      
+      <button onClick={handleCloseModal} className=" self-start text-red-700">
+        CLOSE
+      </button>
+      <div className="text-center my-10">
+              <h1 className="text-5xl font-bold text-purple-400 border-b-4 border-purple-600 inline-block pb-2 mb-8 transition-all duration-300 ease-in-out transform hover:scale-105">
+                  Our Plans
+              </h1>
+              <p className="text-gray-300 text-lg mb-10">
+                  Choose a plan that fits your needs and experience the best of Nyx Rat.
+              </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6  z-50 max-w-fit ml-auto mr-auto">
+              
+
+              {/* Plan Basic */}
+              <div className="border border-gray-700 rounded-lg p-6 text-center bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+                  <h3 className="text-3xl font-semibold mb-4 text-purple-400">Basic</h3>
+                  <ul className="text-left text-sm">
+                      <li>Display-Name: <span className="text-green-500">✓</span></li>
+                      <li>Hostname: <span className="text-green-500">✓</span></li>
+                      <li>Username: <span className="text-green-500">✓</span></li>
+                      <li>System: <span className="text-green-500">✓</span></li>
+                      <li>Version: <span className="text-green-500">✓</span></li>
+                      <li>Architecture: <span className="text-green-500">✓</span></li>
+                      <li>CPU: <span className="text-green-500">✓</span></li>
+                      <li>GPU: <span className="text-red-500">X</span></li>
+                      <li>RAM: <span className="text-green-500">✓</span></li>
+                      <li>HWID: <span className="text-red-500">X</span></li>
+                      <li>IP: <span className="text-green-500">✓</span></li>
+                      <li>MAC: <span className="text-red-500">X</span></li>
+                      <li>Country: <span className="text-green-500">✓</span></li>
+                      <li>Region: <span className="text-green-500">✓</span></li>
+                      <li>City: <span className="text-green-500">✓</span></li>
+                      <li>CEP: <span className="text-red-500">X</span></li>
+                      <li>ISP: <span className="text-red-500">X</span></li>
+                      <li>Web-Cam: <span className="text-green-500">✓</span></li>
+                      <li>Print-screen: <span className="text-red-500">X</span></li>
+                  </ul>
+              </div>
+
+              {/* Plan Pro */}
+              <div className="border border-gray-700 rounded-lg p-6 text-center bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+                  <h3 className="text-3xl font-semibold mb-4 text-purple-400">Pro</h3>
+                  <ul className="text-left text-sm">
+                      <li>Display-Name: <span className="text-green-500">✓</span></li>
+                      <li>Hostname: <span className="text-green-500">✓</span></li>
+                      <li>Username: <span className="text-green-500">✓</span></li>
+                      <li>System: <span className="text-green-500">✓</span></li>
+                      <li>Version: <span className="text-green-500">✓</span></li>
+                      <li>Architecture: <span className="text-green-500">✓</span></li>
+                      <li>CPU: <span className="text-green-500">✓</span></li>
+                      <li>GPU: <span className="text-green-500">✓</span></li>
+                      <li>RAM: <span className="text-green-500">✓</span></li>
+                      <li>HWID: <span className="text-green-500">✓</span></li>
+                      <li>IP: <span className="text-green-500">✓</span></li>
+                      <li>MAC: <span className="text-green-500">✓</span></li>
+                      <li>Country: <span className="text-green-500">✓</span></li>
+                      <li>Region: <span className="text-green-500">✓</span></li>
+                      <li>City: <span className="text-green-500">✓</span></li>
+                      <li>CEP: <span className="text-green-500">✓</span></li>
+                      <li>ISP: <span className="text-green-500">✓</span></li>
+                      <li>Web-Cam: <span className="text-green-500">✓</span></li>
+                      <li>Print-screen: <span className="text-green-500">✓</span></li>
+                  </ul>
+              </div>
+              <div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <br />
+          </div>    
         </div>
       </div>
-      <br />
-      <button
-        className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-        onClick={() => navegando.push('/details')}
-      >
-        Show Details
-      </button>
-    </div>
   );
 }
+
+
+function PricingContent() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  }
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  }
+
+ 
+  const navegando = useRouter()
+  
+
+
+  
+    const rota = useRouter()
+  
+    return (
+      <div className="relative z-10">
+        <h2 className="text-4xl font-bold mb-4">Pricing</h2>
+        <p className="mb-6 text-gray-300">
+          Choose the plan that fits your needs. We have options for various requirements.
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="border border-gray-700 p-4 rounded-lg">
+            <h3 className="text-xl font-bold mb-2">Basic</h3>
+            <p className="text-2xl font-bold mb-4">$9.99/mo</p>
+            <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+              Choose Plan
+            </button>
+          </div>
+          <div className="border border-gray-700 p-4 rounded-lg">
+            <h3 className="text-xl font-bold mb-2">Pro</h3>
+            <p className="text-2xl font-bold mb-4">$29.99/mo</p>
+            <button className="w-full bg-white hover:bg-green-400 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105">
+              Choose Plan
+            </button>
+          </div>
+        </div>
+        <br />
+        <button
+          className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+          onClick={()=> handleOpenModal()}
+        >
+          Show Details
+        </button>
+        <div>
+        {isModalOpen && <Modal />}
+        </div>
+      </div>
+    );
+  }
+
+
 
 function FeaturesContent() {
   const router = useRouter();
