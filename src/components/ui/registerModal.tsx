@@ -56,6 +56,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           </>
         ) : (
           <>
+        <div className='z-999'>
             <h2 className="text-2xl font-bold text-white mb-6 text-center">Registration Error</h2>
             <div className="flex justify-center mb-10">
               <AlertCircle size={64} className="text-red-500" />
@@ -74,6 +75,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
               >
                 Close
               </button>
+            </div>
             </div>
           </>
         )}
