@@ -10,7 +10,7 @@ import Data from "@/data/teste.json";
 import Data2 from "@/data/teste-senhas.json";
 import Data3 from '@/data/teste-cookies.json'
 import Data4 from '@/data/teste-history.json'
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Footer from "./footer/footer";
 
 interface User {
@@ -119,6 +119,7 @@ export default function Component() {
     registeredDate: "2023-01-15",
     expiryDate: "2038-01-15",
   };
+  const rota = useRouter()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -193,6 +194,10 @@ export default function Component() {
     setIsScreenshotModalOpen(false);
     setScreenshotImage(null);
   };
+
+  const handleNavegar = (local:string) =>{
+    rota.push(`/${local}`)
+  }
 
   interface ImageModalProps {
     isOpen: boolean;
@@ -712,8 +717,15 @@ export default function Component() {
               </tbody>
             </table>
           </div>
+          <div>
+            <button
+            onClick={()=>handleNavegar("")}
+            className="relative w-64 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              Back to the main
+            </button>
+          </div>
         </main>
-
         <Footer />
       </div>
 
