@@ -13,6 +13,7 @@ import Data4 from '@/data/teste-history.json'
 import Data5 from '@/data/teste-downloads.json'
 import { useParams, useRouter } from "next/navigation";
 import Footer from "./footer/footer";
+import Link from "next/link";
 
 interface User {
   id: number;
@@ -325,6 +326,7 @@ export default function Component() {
                 fc:f0:c3:0f:3c:f0
               </p>
             </div>
+            
             <div className="bg-zinc-900 p-4 rounded-md">
               <strong>Country:</strong>
               <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
@@ -413,10 +415,22 @@ function ModalDownloads() {
       <h1 className="text-3xl font-bold text-center">Donwloads</h1>
       <div>
       {dl.map(({id,fileName,fileSize,downloadDate})=>(
-        <div key={id}>
-            <h2>{fileName}</h2>
-            <h3>{fileSize}</h3>
-            <p>{downloadDate}</p>
+            <div className="grid grid-cols-2 gap-4 ml-auto" key={id}>
+            <div className="bg-zinc-900 p-4 rounded-md">
+              <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
+              <Link href={"#"}
+              className="  text-purple-400 hover:underline hover:text-blue-500"
+             >
+              {fileName}
+            </Link>
+              </p>
+              <div className="bg-zinc-900 p-4 rounded-md">
+              <strong className="text-purple-400">{fileSize}</strong>    
+            </div> 
+            </div>
+            <div className="bg-zinc-900 p-4 rounded-md">
+              <strong className="text-purple-400">{downloadDate}</strong>    
+            </div>
         </div>
       ))}
       </div>
@@ -559,7 +573,7 @@ function ModalDownloads() {
       setIsModalOpenSenha(true);
     };
 
-    
+
     return (
       <div
         ref={contextMenuRef}
