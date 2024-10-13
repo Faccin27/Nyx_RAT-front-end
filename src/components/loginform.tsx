@@ -9,7 +9,6 @@ interface FormData {
   username: string;
   email: string;
   password: string;
-  phone: string;
   birthday: string;
   gender: string;
 }
@@ -18,7 +17,6 @@ interface Errors {
   username?: string;
   email?: string;
   password?: string;
-  phone?: string;
   birthday?: string;
   gender?: string;
   terms?: string;
@@ -31,7 +29,6 @@ const LoginRegisterForm: React.FC = () => {
     username: '',
     email: '',
     password: '',
-    phone: '',
     birthday: '',
     gender: '',
   });
@@ -124,7 +121,6 @@ const LoginRegisterForm: React.FC = () => {
           ).toISOString(),
           gender: formData.gender === 'male' ? 'Masculino' : 'Feminino',
           birthDate: new Date(formData.birthday).toISOString(),
-          phone: formData.phone,
           role: 'USER',
         });
 

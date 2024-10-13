@@ -9,7 +9,6 @@
         "expiryDate": "2038-01-15",
         "gender": "Masculino",
         "birthDate": "1990-05-20",
-        "phone": "+55 11 91234-5678",
         "isActive": true,
         "roles": ["user", "admin", "premium"],
         "createdAt": "2023-01-15T10:00:00Z",

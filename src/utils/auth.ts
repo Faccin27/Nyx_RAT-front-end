@@ -12,7 +12,6 @@ export interface User {
   expiryDate: string;
   gender: string;
   birthDate: string;
-  phone: string;
   isActive: boolean;
   role: string[];
   createdAt: string;
