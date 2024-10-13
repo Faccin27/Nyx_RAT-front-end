@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "fileName": "report.pdf",
+        "fileSize": "2.4MB",
+        "downloadDate": "2024-10-01",
+        "location": "Documents/Reports"
+    },
+    {
+        "id": 2,
+        "fileName": "presentation.pptx",
+        "fileSize": "5.8MB",
+        "downloadDate": "2024-09-25",
+        "location": "Documents/Work"
+    },
+    {
+        "id": 3,
+        "fileName": "music.mp3",
+        "fileSize": "4.3MB",
+        "downloadDate": "2024-08-30",
+        "location": "Music"
+    },
+    {
+        "id": 4,
+        "fileName": "video.mp4",
+        "fileSize": "15.2MB",
+        "downloadDate": "2024-07-15",
+        "location": "Videos"
+    },
+    {
+        "id": 5,
+        "fileName": "photo.jpg",
+        "fileSize": "1.8MB",
+        "downloadDate": "2024-09-10",
+        "location": "Pictures"
+    },
+    {
+        "id": 6,
+        "fileName": "software.zip",
+        "fileSize": "32.6MB",
+        "downloadDate": "2024-10-05",
+        "location": "Downloads/Software"
+    }
+]
