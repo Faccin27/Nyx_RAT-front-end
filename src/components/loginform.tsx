@@ -1,9 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import Link from 'next/link';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import RegistrationModal from './ui/registerModal';
-import http from './http/http';
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import Link from "next/link";
+import axios from "axios";
+import Cookies from "js-cookie";
+import RegistrationModal from "./ui/registerModal";
+import http from "./http/http";
 
 interface FormData {
   username: string;
@@ -26,32 +26,36 @@ interface Errors {
 const LoginRegisterForm: React.FC = () => {
   const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
   const [formData, setFormData] = useState<FormData>({
-    username: '',
-    email: '',
-    password: '',
-    birthday: '',
-    gender: '',
+    username: "",
+    email: "",
+    password: "",
+    birthday: "",
+    gender: "",
   });
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState<boolean>(false);
+  const [isRegistrationSuccess, setIsRegistrationSuccess] =
+    useState<boolean>(false);
   const [errors, setErrors] = useState<Errors>({});
   const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
 
   const toggleForm = (): void => {
     setIsLoginForm(!isLoginForm);
     setErrors({});
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ): void => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-    
+
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: '',
+      [name]: "",
     }));
   };
 
@@ -60,10 +64,8 @@ const LoginRegisterForm: React.FC = () => {
 
     if (!isLoginForm) {
       if (formData.username.length < 5) {
-        newErrors.username = 'Username must be at least 5 characters long';
+        newErrors.username = "Username must be at least 5 characters long";
       }
-
-
 
       const birthDate = new Date(formData.birthday);
       const today = new Date();
@@ -73,11 +75,11 @@ const LoginRegisterForm: React.FC = () => {
         age--;
       }
       if (age < 16) {
-        newErrors.birthday = 'You must be at least 16 years old';
+        newErrors.birthday = "You must be at least 16 years old";
       }
 
       if (!acceptTerms) {
-        newErrors.terms = 'You must accept the Terms of Service';
+        newErrors.terms = "You must accept the Terms of Service";
       }
     }
 
@@ -89,28 +91,33 @@ const LoginRegisterForm: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await http.post('users/login', {
+        const response = await http.post("users/login", {
           email: formData.email,
           pass: formData.password,
         });
 
         if (response.data.token) {
-          const in30Minutes = 1/48;
-          Cookies.set('token', response.data.token, { expires: in30Minutes }); 
-          console.log('User logged in successfully');
+          const expirationTime = rememberMe ? 7 : 1 / 48;
+          Cookies.set("token", response.data.token, {
+            expires: expirationTime,
+          });
+          console.log("User logged in successfully");
+          window.location.reload();
         }
       } catch (error) {
-        console.error('Error logging in:', error);
-        setErrors({ login: 'Invalid email or password' });
+        console.error("Error logging in:", error);
+        setErrors({ login: "Invalid email or password" });
       }
     }
   };
 
-  const handleRegister = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleRegister = async (
+    e: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await http.post('users/', {
+        const response = await http.post("users/", {
           name: formData.username,
           password: formData.password,
           email: formData.email,
@@ -119,16 +126,16 @@ const LoginRegisterForm: React.FC = () => {
           expiryDate: new Date(
             new Date().setFullYear(new Date().getFullYear() + 1)
           ).toISOString(),
-          gender: formData.gender === 'male' ? 'Masculino' : 'Feminino',
+          gender: formData.gender === "male" ? "Masculino" : "Feminino",
           birthDate: new Date(formData.birthday).toISOString(),
-          role: 'USER',
+          role: "USER",
         });
 
-        console.log('User registered successfully:', response.data);
+        console.log("User registered successfully:", response.data);
         setIsRegistrationSuccess(true);
         setIsModalOpen(true);
       } catch (error) {
-        console.error('Error registering user:', error);
+        console.error("Error registering user:", error);
         setIsRegistrationSuccess(false);
         setIsModalOpen(true);
       }
@@ -145,7 +152,7 @@ const LoginRegisterForm: React.FC = () => {
   };
 
   const handleSupportClick = (): void => {
-    console.log('Support clicked');
+    console.log("Support clicked");
   };
 
   return (
@@ -179,13 +186,17 @@ const LoginRegisterForm: React.FC = () => {
               onChange={handleInputChange}
             />
           </div>
-          {errors.login && <p className="text-red-500 text-sm">{errors.login}</p>}
+          {errors.login && (
+            <p className="text-red-500 text-sm">{errors.login}</p>
+          )}
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="remember"
                 className="rounded text-purple-500 focus:ring-pink-500"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label htmlFor="remember" className="text-sm text-gray-300">
                 Remember me
@@ -218,7 +229,9 @@ const LoginRegisterForm: React.FC = () => {
                 className="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 onChange={handleInputChange}
               />
-              {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
+              {errors.username && (
+                <p className="text-red-500 text-sm">{errors.username}</p>
+              )}
             </div>
             <div>
               <label htmlFor="email" className="block text-white mb-1">
@@ -286,7 +299,9 @@ const LoginRegisterForm: React.FC = () => {
               I accept the Terms of Service
             </label>
           </div>
-          {errors.terms && <p className="text-red-500 text-sm">{errors.terms}</p>}
+          {errors.terms && (
+            <p className="text-red-500 text-sm">{errors.terms}</p>
+          )}
           <button
             type="submit"
             className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
@@ -300,7 +315,7 @@ const LoginRegisterForm: React.FC = () => {
         onClick={toggleForm}
         className="mt-4 text-sm text-blue-400 hover:underline"
       >
-        {isLoginForm ? 'Register' : 'Login'}
+        {isLoginForm ? "Register" : "Login"}
       </button>
 
       <RegistrationModal
