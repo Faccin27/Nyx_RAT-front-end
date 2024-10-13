@@ -42,6 +42,7 @@ interface Senhas {
   id: number;
   location: string;
   password: string;
+  email:string
 }
 
 interface Cookies {
@@ -62,7 +63,6 @@ interface History1{
 
 interface History2{
   id:number;
-  location:string;
   history: Array<History1>;
 
 }
@@ -398,13 +398,6 @@ export default function Component() {
           </button>
           <h1 className="text-3xl font-bold text-center">History</h1>
           <div>
-            {history.map(({ id, location }) => (
-              <div className="bg-zinc-900 p-4 rounded-md" key={id}>
-                <strong>{location}</strong>
-                <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                </p>
-              </div>
-            ))}
             {history2.map(({url,title,visitTime,duration},index)=>(
                <div className="bg-zinc-900 p-4 rounded-md" key={index}>
                <strong>{title}</strong>
@@ -480,11 +473,13 @@ export default function Component() {
           >
             CLOSE
           </button>
-          <h1 className="text-3xl font-bold text-center">Passowrds</h1>
+          <h1 className="text-3xl font-bold text-center">Passwords</h1>
           <div>
-            {senhas.map(({ id, location, password }) => (
-              <div className="bg-zinc-900 p-4 rounded-md" key={id}>
+            {senhas.map(({ id, location, password, email }) => (
+             <div className="grid grid-cols-2 gap-4" key={id}>
+                <div className="bg-zinc-900 p-4 rounded-md">
                 <strong>{location}</strong>
+                </div>
                 <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
                   {password}
                 </p>

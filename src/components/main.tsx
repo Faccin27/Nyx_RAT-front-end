@@ -258,10 +258,10 @@ function DownloadContent() {
 }
 
 function Modal () {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)//Os modals são bem fáceis se liga:
+  const [isModalOpenPrice, setIsModalOpenPrice] = useState<boolean>(false)
   const rota = useRouter()
-const handleCloseModal = () => {
-  rota.push('/');
+const handleCloseModalPrice = () => {
+  setIsModalOpenPrice(false)
 }
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -276,7 +276,7 @@ const handleCloseModal = () => {
       </div>
       {/* Botão de fechar */}
       
-      <button onClick={handleCloseModal} className=" self-start text-red-700">
+      <button onClick={handleCloseModalPrice} className=" self-start text-red-700">
         CLOSE
       </button>
       <div className="text-center my-10">
@@ -355,18 +355,10 @@ const handleCloseModal = () => {
 
 
 function PricingContent() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-    const handleOpenModal = () => {
-      setIsModalOpen(true);
-    }
-    
- 
-  const navegando = useRouter()
-  
-
-
-  
-    const rota = useRouter()
+  const [isModalOpenPrice, setIsModalOpenPrice] = useState<boolean>(false)
+const handleOpenModalPrice = () => {
+  setIsModalOpenPrice(true)
+}
   
     return (
       <div className="relative z-10">
@@ -393,12 +385,12 @@ function PricingContent() {
         <br />
         <button
           className="relative w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-          onClick={()=> handleOpenModal()}
+          onClick={handleOpenModalPrice}
         >
           Show Details
         </button>
         <div>
-        {isModalOpen && <Modal />}
+        {isModalOpenPrice && <Modal />}
         </div>
       </div>
     );
