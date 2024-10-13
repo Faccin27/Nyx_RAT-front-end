@@ -218,7 +218,7 @@ function UserInfo({ user, handleLogout }: UserInfoProps) {
       onClick={()=> rota.push('/control-panel')}
       className="w-full bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
       >
-        Go to the Control Panel
+      Control Panel
       </button>
       </div>
     </div>

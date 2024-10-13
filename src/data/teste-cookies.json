@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "location": "Email",
+        "cookie": "email_cookie_abc123"
+    },
+    {
+        "id": 2,
+        "location": "Social Media",
+        "cookie": "social_cookie_def456"
+    },
+    {
+        "id": 3,
+        "location": "Gaming Account",
+        "cookie": "gaming_cookie_ghi789"
+    },
+    {
+        "id": 4,
+        "location": "Work Account",
+        "cookie": "work_cookie_jkl321"
+    },
+    {
+        "id": 5,
+        "location": "Music Streaming",
+        "cookie": "music_cookie_mno987"
+    },
+    {
+        "id": 6,
+        "location": "Office Account",
+        "cookie": "office_cookie_pqr654"
+    },
+    {
+        "id": 7,
+        "location": "Development Platform",
+        "cookie": "dev_cookie_stu852"
+    },
+    {
+        "id": 8,
+        "location": "Collaboration Tool",
+        "cookie": "collab_cookie_vwx123"
+    }
+]

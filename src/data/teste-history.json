@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "location": "Google Chrome",
+        "history": [
+            {
+                "url": "https://www.example.com",
+                "title": "Example Website",
+                "visitTime": "2024-10-10 14:35:22",
+                "duration": "5 minutes"
+            },
+            {
+                "url": "https://www.gmail.com",
+                "title": "Gmail",
+                "visitTime": "2024-10-10 14:45:00",
+                "duration": "10 minutes"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "location": "Mozilla Firefox",
+        "history": [
+            {
+                "url": "https://www.reddit.com",
+                "title": "Reddit",
+                "visitTime": "2024-10-09 16:12:45",
+                "duration": "15 minutes"
+            },
+            {
+                "url": "https://www.youtube.com",
+                "title": "YouTube",
+                "visitTime": "2024-10-09 16:30:00",
+                "duration": "30 minutes"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "location": "Microsoft Edge",
+        "history": [
+            {
+                "url": "https://www.office.com",
+                "title": "Microsoft Office",
+                "visitTime": "2024-10-08 10:20:35",
+                "duration": "20 minutes"
+            },
+            {
+                "url": "https://www.linkedin.com",
+                "title": "LinkedIn",
+                "visitTime": "2024-10-08 10:45:10",
+                "duration": "10 minutes"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "location": "Safari",
+        "history": [
+            {
+                "url": "https://www.apple.com",
+                "title": "Apple",
+                "visitTime": "2024-10-07 13:30:00",
+                "duration": "7 minutes"
+            },
+            {
+                "url": "https://www.netflix.com",
+                "title": "Netflix",
+                "visitTime": "2024-10-07 14:00:00",
+                "duration": "2 hours"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "location": "Opera",
+        "history": [
+            {
+                "url": "https://www.amazon.com",
+                "title": "Amazon",
+                "visitTime": "2024-10-06 09:10:10",
+                "duration": "10 minutes"
+            },
+            {
+                "url": "https://www.twitch.tv",
+                "title": "Twitch",
+                "visitTime": "2024-10-06 09:30:00",
+                "duration": "45 minutes"
+            }
+        ]
+    }
+]
