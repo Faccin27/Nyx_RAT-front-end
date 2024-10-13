@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "victim": "Discord",
+        "username": "thefaccin",
+        "email": "zackslayer45@gmail.com",
+        "nitro": false,
+        "token": "1723BFDUJ9I1H289UHFN391BGH7U1G2B7112",
+        "profile_image": "https://yourdomain.com/images/thefaccin.png"
+    },
+    {
+        "id": 2,
+        "victim": "Discord",
+        "username": "shadowhunter",
+        "email": "shadowhunter321@gmail.com",
+        "nitro": true,
+        "token": "A82B3FDUJ8I2H19AHFN391BGH72G1C4B748BF",
+        "profile_image": "https://yourdomain.com/images/shadowhunter.png"
+    },
+    {
+        "id": 3,
+        "victim": "Discord",
+        "username": "cyberfox",
+        "email": "cyberfox123@outlook.com",
+        "nitro": false,
+        "token": "B93CF7DUJ9I3F18CHFN291CGH6A1H1B948",
+        "profile_image": "https://yourdomain.com"
+    },
+        {
+        "id": 4,
+        "victim": "Discord",
+        "username": "nighthawk",
+        "email": "nighthawk987@yahoo.com",
+        "nitro": true,
+        "token": "F62DGJ8UJ5I9P23CFJN201CGH8T28",
+        "profile_image": "https://yourdomain.com/images/nighthawk.png"
+    },
+    {
+        "id": 5,
+        "victim": "Discord",
+        "username": "phantom",
+        "email": "phantom999@hotmail.com",
+        "nitro": false,
+        "token": "H93JKL4UJ8I7K22DFHN293CGH7V1I",
+        "profile_image": "https://yourdomain.com/images/phantom.png"
+    },
+    {
+        "id": 6,
+        "victim": "Discord",
+        "username": "stormrider",
+        "email": "stormrider456@gmail.com",
+        "nitro": true,
+        "token": "J34MNR6UJ2I4R13EFHN381CGH9X1G5E4",
+        "profile_image": "https://yourdomain.com/images/stormrider.png"
+    },
+    {
+        "id": 7,
+        "victim": "Discord",
+        "username": "blazeheart",
+        "email": "blazeheart234@outlook.com",
+        "nitro": false,
+        "token": "K47PQV8UJ9I6P15GFJN294CGH532",
+        "profile_image": "https://yourdomain.com/images/blazeheart.png"
+    },
+    {
+        "id": 8,
+        "victim": "Discord",
+        "username": "voidwalker",
+        "email": "voidwalker123@protonmail.com",
+        "nitro": true,
+        "token": "L53RST2UJ8I9F18AFHN291CGH8WGH654",
+        "profile_image": "https://yourdomain.com/images/voidwalker.png"
+    }
+]
+
