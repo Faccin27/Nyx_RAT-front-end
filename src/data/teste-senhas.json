@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "location": "Email",
+        "username": "jdoe",
+        "password": "Password123!"
+    },
+    {
+        "id": 2,
+        "location": "Social Media",
+        "username": "jsmith",
+        "password": "SecurePass456@"
+    },
+    {
+        "id": 3,
+        "location": "Gaming Account",
+        "username": "ajohnson",
+        "password": "GamerPass789#"
+    },
+    {
+        "id": 4,
+        "location": "Work Account",
+        "username": "bbrown",
+        "password": "WorkPass321$"
+    },
+    {
+        "id": 5,
+        "location": "Music Streaming",
+        "username": "cgreen",
+        "password": "MusicLover987%"
+    },
+    {
+        "id": 6,
+        "location": "Office Account",
+        "username": "dprince",
+        "password": "OfficeKey654&"
+    },
+    {
+        "id": 7,
+        "location": "Development Platform",
+        "username": "ehunt",
+        "password": "DevCode852*"
+    },
+    {
+        "id": 8,
+        "location": "Collaboration Tool",
+        "username": "fgallagher",
+        "password": "TeamWork123!"
+    }
+]
