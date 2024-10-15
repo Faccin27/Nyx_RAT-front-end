@@ -1,19 +1,9 @@
 "use client";
-import { useState, useEffect, useRef, MouseEvent } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
-import prtsc from "@/assets/screenshot.png";
-import webcam from "@/assets/webcam.png";
-import Data from "@/data/teste.json";
-import Data2 from "@/data/teste-senhas.json";
+
 import Data3 from '@/data/teste-cookies.json'
-import Data4 from '@/data/teste-history.json'
-import Data5 from '@/data/teste-downloads.json'
-import Data6 from '@/data/teste-discord.json'
-import { useParams, useRouter } from "next/navigation";
-import ModalDiscord from '@/components/Modals/discord/modaldiscord'
-import ModalDownloads from '@/components/Modals/downloads/modaldownloads'
 
 
 export default function ModalCookies() {
@@ -37,7 +27,7 @@ export default function ModalCookies() {
           {/* BotÃ£o de fechar */}
 
           <button
-            onClick={handleCloseCookies}
+            onClick={()=>handleCloseCookies()}
             className=" self-start text-red-700"
           >
             CLOSE

