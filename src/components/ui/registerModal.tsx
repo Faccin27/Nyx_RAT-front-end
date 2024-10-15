@@ -30,7 +30,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
   if (!isOpen && !isVisible) return null;
 
   return (
-    <div className={`fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`z-50 fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
       <div className={`bg-zinc-800 rounded-lg p-8 w-full max-w-lg transition-transform transform duration-300 ${isOpen ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-10 scale-95 opacity-0'}`}>
         {isSuccess ? (
           <>
@@ -56,7 +56,7 @@ const RegistrationModal: React.FC<RegistrationModalProps> = ({
           </>
         ) : (
           <>
-        <div className='z-999'>
+        <div className='z-50'>
             <h2 className="text-2xl font-bold text-white mb-6 text-center">Registration Error</h2>
             <div className="flex justify-center mb-10">
               <AlertCircle size={64} className="text-red-500" />

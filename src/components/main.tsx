@@ -310,13 +310,9 @@ function PricingContent() {
 
 function FeaturesContent() {
   const [isModalFOpen, setIsModalFOpen] = useState<boolean>(false);
-  const rota = useRouter();
   const handleOpenModalF = () => {
-    setIsModalFOpen(false);
+    setIsModalFOpen(true);
   };
-
-  const router = useRouter();
-
   return (
     <div className="relative z-10">
       <h2 className="text-4xl font-bold mb-4">Features</h2>
