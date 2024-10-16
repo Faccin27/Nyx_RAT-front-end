@@ -272,6 +272,9 @@ function PricingContent() {
   const handleOpenModalPrice = () => {
     setIsModalOpenPrice(true);
   };
+  const handleCloseModalPrice = () => {
+    setIsModalOpenPrice(false);
+  };
 
   return (
     <div className="relative z-10">
@@ -303,16 +306,21 @@ function PricingContent() {
       >
         Show Details
       </button>
-      <div>{isModalOpenPrice && <ModalPricing />}</div>
+      <div>{isModalOpenPrice && <ModalPricing fecharModal={handleCloseModalPrice}/>}</div>
     </div>
   );
 }
 
 function FeaturesContent() {
-  const [isModalFOpen, setIsModalFOpen] = useState<boolean>(false);
-  const handleOpenModalF = () => {
-    setIsModalFOpen(true);
+  const [isFeaturesOpen, setIsFeaturesOpen] = useState<boolean>(false);
+
+  const handleOpenFeatures = () => {
+    setIsFeaturesOpen(true);
   };
+  const handleCloseFeatures = () => {
+    setIsFeaturesOpen(false);
+  };
+
   return (
     <div className="relative z-10">
       <h2 className="text-4xl font-bold mb-4">Features</h2>
@@ -329,12 +337,16 @@ function FeaturesContent() {
       </ul>
       <button
         className="mt-6 w-60 bg-white hover:bg-purple-700 text-black py-2 rounded-md transition-all duration-300 ease-in-out transform hover:scale-105"
-        onClick={handleOpenModalF}
+        onClick={handleOpenFeatures}
       >
         Learn More
       </button>
-      <div>{isModalFOpen && <ModalFeatures />}</div>
+    <div>
+
+      {isFeaturesOpen && <ModalFeatures fecharModal={handleCloseFeatures}/>}
     </div>
+    </div>
+    
   );
 }
 
@@ -344,6 +356,9 @@ function TermService() {
   const rota = useRouter();
   const handleOpenModalServices = () => {
     setIsModalservicesOpen(true);
+  };
+  const handleCloseModalServices = () => {
+    setIsModalservicesOpen(false);
   };
 
   const router = useRouter();
@@ -361,7 +376,7 @@ function TermService() {
       >
         Learn More
       </button>
-      <div>{isModalservicesOpen && <ModalServices />}</div>
+      <div>{isModalservicesOpen && <ModalServices  fecharModal={handleCloseModalServices}/>}</div>
     </div>
   );
 }

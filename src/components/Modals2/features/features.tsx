@@ -1,33 +1,30 @@
 "use client";
-import React, { useState} from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import logo from "@/assets/logo.png";
 import Exemplo from "@/assets/Captura de tela 2024-09-29 121808.png";
 import Exemplo2 from "@/assets/funcionalidades.png";
+import ModalProps from '@/utils/Modals2'
 
-export default function ModalFeatures() {
-  const [isModalFOpen, setIsModalFOpen] = useState<boolean>(false);
-  const rota = useRouter();
-  const handleCloseModalF = () => {
-    setIsModalFOpen(false);
-  };
 
+export default function ModalFeatures({ fecharModal }: ModalProps) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6">
-        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+      <div className="relative bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6 z-60">
+        {/* Imagem do logo com opacidade baixa */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5">
           <Image src={logo} alt="Nyx Logo" width={700} height={700} />
         </div>
-        {/* Botão de fechar */}
 
+        {/* Botão de fechar */}
         <button
-          onClick={handleCloseModalF}
-          className=" self-start text-red-700"
+          onClick={fecharModal}
+          className="relative z-70 self-start text-red-700"
         >
           CLOSE
         </button>
+
         <h1 className="text-4xl font-bold text-white mb-8 drop-shadow-lg">
           How does this RAT really work?
         </h1>

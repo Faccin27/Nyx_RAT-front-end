@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import logo from "@/assets/logo.png";
+import ModalProps from '@/utils/Modals2'
 
-export default function ModalServices() {
-  const [isModalservicesOpen, setIsModalservicesOpen] =
-    useState<boolean>(false);
+export default function ModalServices({fecharModal}:ModalProps) {
+  const [isModalservicesOpen, setIsModalservicesOpen] = useState<boolean>(false);
   const rota = useRouter();
   const handleCloseModalServices = () => {
     setIsModalservicesOpen(false);
@@ -67,7 +67,7 @@ export default function ModalServices() {
         {/* BotÃ£o de fechar */}
 
         <button
-          onClick={handleCloseModalServices}
+          onClick={fecharModal}
           className=" self-start text-red-700"
         >
           CLOSE

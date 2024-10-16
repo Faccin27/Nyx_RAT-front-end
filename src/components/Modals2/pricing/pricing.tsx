@@ -3,13 +3,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import logo from "@/assets/logo.png";
+import ModalProps from '@/utils/Modals2'
 
-export default function ModalPrincing() {
+export default function ModalPrincing({fecharModal}:ModalProps) {
   const [isModalOpenPrice, setIsModalOpenPrice] = useState<boolean>(false);
   const rota = useRouter();
-  const handleCloseModalPrice = () => {
-    setIsModalOpenPrice(false);
-  };
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-zinc-800 p-6 rounded-md text-white w-10/12 max-w-4xl h-4/5 overflow-y-auto space-y-6 ">
@@ -19,7 +18,7 @@ export default function ModalPrincing() {
         {/* Botão de fechar */}
 
         <button
-          onClick={handleCloseModalPrice}
+          onClick={fecharModal}
           className=" self-start text-red-700"
         >
           CLOSE
